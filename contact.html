@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shivansh Sukhija | Contact</title>
   <style>
-    /* Import premium fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+    /* Import premium fonts with better weights */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
     /* Reset and base styles */
     * {
@@ -16,12 +16,14 @@
     }
 
     body {
-      font-family: 'Roboto Mono', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #000000;
       color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      line-height: 1.6;
+      font-size: 14px;
     }
 
     /* Subtle animated background pattern */
@@ -33,179 +35,126 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.01) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.01) 0%, transparent 50%);
-      animation: subtleShift 20s ease-in-out infinite alternate;
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.008) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.005) 0%, transparent 50%);
+      animation: subtleShift 30s ease-in-out infinite alternate;
       pointer-events: none;
       z-index: 1;
     }
 
     @keyframes subtleShift {
-      0% { opacity: 0.3; }
-      100% { opacity: 0.6; }
+      0% { opacity: 0.4; }
+      100% { opacity: 0.7; }
     }
 
-    /* Premium glass nav bar */
+    /* Clean minimal nav bar */
     .nav-bar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 90px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(25px) saturate(200%);
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 1000;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .nav-bar a {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       position: relative;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.8px;
-      padding: 8px 0;
-      margin: 0 25px;
+      transition: all 0.2s ease;
+      letter-spacing: 0.01em;
+      padding: 8px 16px;
+      margin: 0 4px;
+      border-radius: 6px;
     }
     
     .nav-bar a:hover {
-      color: #00ff41;
-      transform: translateY(-1px);
-    }
-    
-    .nav-bar a::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 2px;
-      box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-    }
-    
-    .nav-bar a:hover::after {
-      transform: scaleX(1);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .active {
-      color: #00ff41;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+      color: #00ff41 !important;
+      background: rgba(0, 255, 65, 0.1);
     }
 
-    .active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
-      transform: scaleX(1);
-      border-radius: 2px;
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
-      animation: pulse 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulse {
-      from { box-shadow: 0 0 15px rgba(0, 255, 65, 0.6); }
-      to { box-shadow: 0 0 25px rgba(0, 255, 65, 0.8), 0 0 35px rgba(0, 255, 65, 0.4); }
-    }
-
-    /* Main container */
+    /* Main container with better spacing */
     .main-container {
-      padding: 120px 60px 100px;
-      max-width: 1400px;
+      padding: 80px 20px 80px;
+      max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
-    /* Page header */
+    /* Page header with smaller text */
     .page-header {
       text-align: center;
-      margin-bottom: 80px;
-      animation: fadeInUp 1s ease-out;
+      margin-bottom: 48px;
+      animation: fadeInUp 0.6s ease-out;
     }
 
     .page-title {
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
     .page-subtitle {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.6);
       font-weight: 400;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.01em;
     }
 
-    /* Contact grid */
+    /* Contact grid with better responsive behavior */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 60px;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
     }
 
-    /* Contact info section */
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* Contact cards with softer appearance */
     .contact-info {
-      animation: fadeInUp 1s ease-out 0.2s both;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
     }
 
     .contact-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(0, 255, 65, 0.1);
-      border-radius: 20px;
-      padding: 40px;
-      margin-bottom: 30px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .contact-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-    }
-
-    .contact-card:hover::before {
-      opacity: 1;
     }
 
     .contact-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0, 255, 65, 0.3);
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(0, 255, 65, 0.1);
+      transform: translateY(-2px);
+      border-color: rgba(0, 255, 65, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     .contact-content {
@@ -214,111 +163,91 @@
     }
 
     .contact-title {
-      font-size: 1.8rem;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
 
     .contact-description {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 30px;
-      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+      margin-bottom: 24px;
+      font-size: 14px;
     }
 
     .contact-methods {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 12px;
     }
 
     .contact-method {
       display: flex;
       align-items: center;
-      gap: 15px;
-      padding: 15px;
-      background: rgba(0, 255, 65, 0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(0, 255, 65, 0.1);
-      transition: all 0.3s ease;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
     }
 
     .contact-method:hover {
-      background: rgba(0, 255, 65, 0.1);
-      border-color: rgba(0, 255, 65, 0.3);
-      transform: translateX(5px);
+      background: rgba(0, 255, 65, 0.05);
+      border-color: rgba(0, 255, 65, 0.1);
+      transform: translateX(2px);
     }
 
     .contact-icon {
-      font-size: 1.5rem;
+      font-size: 18px;
       color: #00ff41;
-      min-width: 30px;
+      min-width: 24px;
+      opacity: 0.9;
     }
 
     .contact-details h4 {
       color: #fff;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
     }
 
     .contact-details p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
     }
 
     .contact-details a {
-      color: #00ff41;
+      color: rgba(0, 255, 65, 0.9);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.2s ease;
     }
 
     .contact-details a:hover {
-      color: #00cc33;
+      color: #00ff41;
     }
 
     /* Calendar section */
     .calendar-section {
-      animation: fadeInUp 1s ease-out 0.4s both;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
     }
 
     .calendar-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(0, 255, 65, 0.1);
-      border-radius: 20px;
-      padding: 40px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(20px);
-      height: fit-content;
-    }
-
-    .calendar-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-    }
-
-    .calendar-card:hover::before {
-      opacity: 1;
     }
 
     .calendar-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0, 255, 65, 0.3);
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(0, 255, 65, 0.1);
+      transform: translateY(-2px);
+      border-color: rgba(0, 255, 65, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     .calendar-content {
@@ -327,129 +256,34 @@
     }
 
     .calendar-title {
-      font-size: 1.8rem;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 15px;
-      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
     }
 
-    .calendar-description {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 30px;
-      font-size: 1rem;
-    }
-
-    /* Cal.com embed container */
+    /* Cal.com embed with better styling */
     .calendar-embed {
       width: 100%;
-      min-height: 600px;
-      border-radius: 12px;
+      min-height: 500px;
+      border-radius: 8px;
       overflow: hidden;
-      border: 1px solid rgba(0, 255, 65, 0.2);
-      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .calendar-embed iframe {
       width: 100%;
-      height: 600px;
+      height: 500px;
       border: none;
-      border-radius: 12px;
-    }
-
-    /* Quick booking buttons */
-    .quick-booking {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .booking-btn {
-      background: rgba(0, 255, 65, 0.1);
-      color: #00ff41;
-      border: 1px solid rgba(0, 255, 65, 0.3);
-      padding: 12px 20px;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .booking-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .booking-btn:hover::before {
-      left: 100%;
-    }
-
-    .booking-btn:hover {
-      background: rgba(0, 255, 65, 0.2);
-      border-color: #00ff41;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 255, 65, 0.2);
-    }
-
-    /* Floating elements */
-    .floating-element {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: linear-gradient(45deg, #00ff41, #00cc33);
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .floating-element:nth-child(1) {
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-      animation-duration: 8s;
-    }
-
-    .floating-element:nth-child(2) {
-      top: 60%;
-      right: 10%;
-      animation-delay: 2s;
-      animation-duration: 6s;
-    }
-
-    .floating-element:nth-child(3) {
-      top: 40%;
-      left: 5%;
-      animation-delay: 4s;
-      animation-duration: 7s;
-    }
-
-    .floating-element:nth-child(4) {
-      bottom: 30%;
-      right: 5%;
-      animation-delay: 1s;
-      animation-duration: 9s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -463,104 +297,123 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 70px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(25px) saturate(200%);
-      background: rgba(0, 0, 0, 0.8);
-      border-top: 1px solid rgba(0, 255, 65, 0.2);
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(0, 0, 0, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 1000;
     }
 
     .footer p {
       margin: 0;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
       font-weight: 400;
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+      letter-spacing: 0.01em;
     }
 
     /* Custom scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.2);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, #00ff41, #00cc33);
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(45deg, #00cc33, #00ff41);
+      background: rgba(0, 255, 65, 0.3);
     }
 
-    /* Responsive design */
-    @media (max-width: 1024px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .main-container {
-        padding: 120px 30px 100px;
-      }
-    }
-
+    /* Mobile-first responsive design */
     @media (max-width: 768px) {
       .main-container {
-        padding: 120px 30px 100px;
+        padding: 80px 16px 80px;
       }
       
       .nav-bar a {
-        margin: 0 15px;
-        font-size: 14px;
+        margin: 0 2px;
+        font-size: 13px;
+        padding: 6px 12px;
       }
       
       .contact-card, .calendar-card {
-        padding: 30px;
-      }
-      
-      .quick-booking {
-        flex-direction: column;
-      }
-      
-      .calendar-embed iframe {
-        height: 500px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .main-container {
-        padding: 120px 20px 100px;
-      }
-      
-      .contact-card, .calendar-card {
-        padding: 25px;
+        padding: 20px;
       }
       
       .calendar-embed iframe {
         height: 450px;
       }
+      
+      .page-title {
+        font-size: 1.5rem;
+      }
+      
+      .page-subtitle {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-container {
+        padding: 80px 12px 80px;
+      }
+      
+      .contact-card, .calendar-card {
+        padding: 16px;
+      }
+      
+      .calendar-embed iframe {
+        height: 400px;
+      }
+      
+      .contact-methods {
+        gap: 8px;
+      }
+      
+      .contact-method {
+        padding: 10px;
+      }
+      
+      .nav-bar {
+        height: 60px;
+      }
+      
+      .nav-bar a {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+    }
+
+    /* Dark mode optimizations */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #000000;
+      }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Subtle floating elements -->
-  <div class="floating-element"></div>
-  <div class="floating-element"></div>
-  <div class="floating-element"></div>
-  <div class="floating-element"></div>
-
   <nav class="nav-bar">
     <a href="index.html">Home</a>
     <a href="blog.html">Projects</a>
-    <!-- <a href="projects.html">Projects</a> -->
     <a class="active" href="contact.html">Contact</a>
   </nav>
 
@@ -632,26 +485,9 @@
         <div class="calendar-card">
           <div class="calendar-content">
             <h2 class="calendar-title">Schedule a Call</h2>
-            <!-- <p class="calendar-description">
-              Book a free 30-minute consultation to discuss your project requirements, 
-              technical challenges, and how we can work together.
-            </p> -->
-            
-            <!-- <div class="quick-booking">
-              <a href="https://cal.com/shivansh-sukhija-2itoy0/30min" class="booking-btn" target="_blank">
-                📅 30 Min Consultation
-              </a>
-              <a href="https://cal.com/shivansh-sukhija-2itoy0/secret" class="booking-btn" target="_blank">
-                🔧 Technical Review
-              </a>
-              <a href="https://cal.com/shivansh-sukhija-2itoy0/secret" class="booking-btn" target="_blank">
-                🚀 Project Planning
-              </a>
-            </div> -->
             
             <!-- Cal.com Embed -->
             <div class="calendar-embed">
-              <!-- Replace 'shivansh' with your actual Cal.com username -->
               <iframe 
                 src="https://cal.com/shivansh-sukhija-2itoy0/30min" 
                 frameborder="0"
@@ -674,18 +510,18 @@
       // Staggered animations
       const contactElements = document.querySelectorAll('.contact-card, .calendar-card');
       contactElements.forEach((element, index) => {
-        element.style.animationDelay = `${0.2 + index * 0.2}s`;
+        element.style.animationDelay = `${0.1 + index * 0.1}s`;
       });
 
       // Smooth hover effects for contact methods
       const contactMethods = document.querySelectorAll('.contact-method');
       contactMethods.forEach(method => {
         method.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateX(5px) scale(1.02)';
+          this.style.transform = 'translateX(2px)';
         });
         
         method.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateX(0) scale(1)';
+          this.style.transform = 'translateX(0)';
         });
       });
 
@@ -697,15 +533,6 @@
         });
       }
     });
-
-    // Copy email to clipboard functionality
-    function copyEmail() {
-      const email = 'sukhija.shivansh@gmail.com';
-      navigator.clipboard.writeText(email).then(function() {
-        // You can add a toast notification here
-        console.log('Email copied to clipboard');
-      });
-    }
   </script>
 </body>
 </html>
