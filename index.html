@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shivansh Sukhija | Get your project done in 2 weeks</title>
 
-  <!-- 1 — Premium monospace + sans-serif font stack -->
+  <!-- Premium monospace + sans-serif font stack -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -15,7 +15,7 @@
     /* ----------  Base page styles  ---------- */
     body{
       font-family:'Roboto Mono','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-      background:#000;                      /* pure black */
+      background:#000;
       color:#fff;
       min-height:100vh;
       overflow-x:hidden;
@@ -31,14 +31,14 @@
         radial-gradient(circle 1px at 75% 60%,rgba(0,255,65,.1) 0,transparent 2px);
       background-size:6rem 6rem;
       animation:bgShift 40s linear infinite;
-      pointer-events:none;                 /* keep it non-interactive */
+      pointer-events:none;
       z-index:0;
     }
     @keyframes bgShift{
       to{background-position:120rem 60rem, -120rem -60rem;}
     }
 
-    /* ----------  Glassy navigation bar  ---------- */
+    /* ----------  CONSISTENT Glassy navigation bar  ---------- */
     .nav-bar {
       position: fixed;
       top: 0;
@@ -90,10 +90,36 @@
     .nav-bar a:hover::after {
       transform: scaleX(1);
     }
+
+    .active {
+      color: #00ff41;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+    }
+
+    .active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
+      transform: scaleX(1);
+      border-radius: 2px;
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { box-shadow: 0 0 15px rgba(0, 255, 65, 0.6); }
+      to { box-shadow: 0 0 25px rgba(0, 255, 65, 0.8), 0 0 35px rgba(0, 255, 65, 0.4); }
+    }
+
     /* ----------  Layout container  ---------- */
     .main-container{
       display:flex;flex-wrap:wrap;
-      padding:72px 0 60px;                 /* top = nav height, bottom = footer height */
+      padding:90px 0 70px; /* FIXED: consistent with nav and footer height */
       position:relative;z-index:1;
     }
 
@@ -103,18 +129,28 @@
       padding:80px 60px;
       display:flex;flex-direction:column;justify-content:center;
     }
+
+    /* SHADCN-STYLE: Single line title */
     .hero-title{
-      font-size:clamp(2.5rem,5vw,4.2rem);
+      font-size:clamp(2.2rem,4.5vw,3.8rem);
       font-weight:700;
       background:linear-gradient(135deg,#fff 0%,#e0e0e0 100%);
       -webkit-background-clip:text;background-clip:text;
       -webkit-text-fill-color:transparent;
-      margin-bottom:20px;
+      margin-bottom:16px;
+      white-space:nowrap; /* Keep in single line */
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
+
+    /* SHADCN-STYLE: Single line subtitle */
     .hero-subtitle{
-      font-size:clamp(1.3rem,3vw,2rem);
+      font-size:clamp(1.1rem,2.5vw,1.6rem);
       font-weight:400;
       color:rgba(255,255,255,.85);
+      white-space:nowrap; /* Keep in single line */
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .hero-subtitle .static{color:#fff}
     #typed{
@@ -127,36 +163,33 @@
       50%{border-color:transparent}
     }
 
-    /* ----------  Decorative panel (right)  ---------- */
-    .panel{
-      flex:1 1 420px;
-      min-height:400px;
-      background:#050505;                  /* nearly black panel */
-      display:flex;align-items:center;justify-content:center;
-      padding:40px;
-    }
-    .panel svg{
-      width:220px;height:220px;
-      stroke:#00ff41;fill:none;stroke-width:1.5;
-      animation:rotate 20s linear infinite;
-    }
-    @keyframes rotate{to{transform:rotate(360deg)}}
-
     /* ----------  Footer  ---------- */
     .footer{
-      position:fixed;bottom:0;left:0;right:0;height:60px;
+      position:fixed;bottom:0;left:0;right:0;height:70px;
       display:flex;justify-content:center;align-items:center;
-      backdrop-filter:blur(20px) saturate(180%);
-      background:rgba(0,0,0,.7);
-      border-top:1px solid rgba(0,255,65,.25);
+      backdrop-filter:blur(25px) saturate(200%);
+      background:rgba(0,0,0,0.8);
+      border-top:1px solid rgba(0,255,65,0.2);
       font-size:14px;color:rgba(255,255,255,.7);
-      z-index:10;
+      z-index:1000;
     }
 
     /* ----------  Responsive tweaks  ---------- */
-    @media(max-width:700px){
+    @media(max-width:768px){
       .hero{padding:60px 24px}
-      .panel{padding:24px}
+      .nav-bar a {
+        margin: 0 15px;
+        font-size: 14px;
+      }
+      .hero-title{
+        white-space:normal; /* Allow wrapping on mobile */
+      }
+      .hero-subtitle{
+        white-space:normal; /* Allow wrapping on mobile */
+      }
+    }
+    @media(max-width:480px){
+      .hero{padding:40px 16px}
     }
   </style>
 </head>
@@ -164,8 +197,7 @@
 <body>
   <!-- ----------  Navigation  ---------- -->
   <nav class="nav-bar">
-    <a href="#home">Home</a>
-    <!-- <a href="#blogs">Blogs</a> -->
+    <a class="active" href="index.html">Home</a>
     <a href="./blog.html">Projects</a>
     <a href="./contact.html">Contact</a>
   </nav>
@@ -174,20 +206,11 @@
   <main class="main-container">
     <!-- Hero -->
     <section class="hero">
-      <h1 class="hero-title">Hello, I’m Shivansh</h1>
+      <h1 class="hero-title">Hello, I'm Shivansh</h1>
       <h2 class="hero-subtitle">
         <span class="static">I create&nbsp;</span><span id="typed"></span>
       </h2>
     </section>
-
-    <!-- Decorative right panel (pure SVG animation, no JS needed) -->
-    <!-- <aside class="panel">
-      <svg viewBox="-50 -50 100 100" aria-hidden="true">
-        <rect x="-40" y="-40" width="80" height="80" rx="6" />
-        <circle r="35" />
-        <polygon points="-38,-38 -20,0 -38,38" />
-      </svg>
-    </aside> -->
   </main>
 
   <!-- ----------  Footer  ---------- -->
