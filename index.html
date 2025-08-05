@@ -7,6 +7,8 @@
 
   <!-- Premium monospace + sans-serif font stack -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+
 
   <style>
     /* ----------  Global reset  ---------- */
@@ -191,6 +193,51 @@
     @media(max-width:480px){
       .hero{padding:40px 16px}
     }
+
+    .ball{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top : 100px;
+    }
+
+    .main-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      flex: 1 1 420px;
+      min-width: 0;
+    }
+
+    .rightball {
+      flex: 0 0 auto;
+      align-self: center;
+      width: min(450px, 32vw);
+      height: min(450px, 32vw);
+      min-width: 100px;
+      min-height: 100px;
+      margin-right: 3vw;
+      margin-bottom: 0;
+      position: relative !important; /* Override fixed positioning */
+      top: 100px;
+      right: 15%;
+    }
+
+    @media (max-width: 950px) {
+      .main-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .rightball {
+        /* Center ball underneath hero section */
+        margin-top: 32px;
+        margin-right: 100px;
+      }
+    }
   </style>
 </head>
 
@@ -205,13 +252,16 @@
   <!-- ----------  Main content  ---------- -->
   <main class="main-container">
     <!-- Hero -->
-    <section class="hero">
-      <h1 class="hero-title">Hey, I'm Shivansh</h1>
-      <h2 class="hero-subtitle">
-        <span class="static">I create&nbsp;</span><span id="typed"></span>
-      </h2>
-    </section>
-  </main>
+     <div>
+      <section class="hero">
+        <h1 class="hero-title">Hey, I'm Shivansh</h1>
+        <h2 class="hero-subtitle">
+          <span class="static">I create&nbsp;</span><span id="typed"></span>
+        </h2>
+      </section>
+     </div>
+     <dotted-ai-ball class="rightball"></dotted-ai-ball>
+    </main>
 
   <!-- ----------  Footer  ---------- -->
   <footer class="footer">
@@ -236,6 +286,149 @@
 
       setTimeout(type, del ? 60 : 110);
     })();
+  </script>
+  <script>
+  class DottedAIBall extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({mode: 'open'});
+      this.resizeListener = null;
+    }
+
+    connectedCallback() {
+      // Responsive container: always fixed to right & vertically centered, scales down for small screens
+      this.shadowRoot.innerHTML = `
+        <style>
+            :host {
+              display: block;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+            }
+            #container {
+              width: 100%;
+              height: 100%;
+            }
+            canvas {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          @media (max-width: 700px) {
+            :host {
+              top: 109vw;
+              right: 50px;
+            }
+            #container {
+              width: 42vw;
+              height: 42vw;
+              min-width: 200px;
+              min-height: 200px;
+              max-width: 200vw;
+              max-height: 200vw;
+            }
+          }
+          @media (max-width: 480px) {
+            :host {
+              top: 109vw;
+              right: 20vw;
+            }
+            #container {
+              width: 32vw;
+              height: 32vw;
+              min-width: 60px;
+              min-height: 60px;
+            }
+          }
+        </style>
+        <div id="container"></div>
+      `;
+
+      this.initThree();
+      this.resizeListener = () => this.resizeThree();
+      window.addEventListener('resize', this.resizeListener);
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener('resize', this.resizeListener);
+    }
+
+    // Dynamically determine size based on container/client width
+    getSize() {
+      // Only use the computed style for the container
+      const container = this.shadowRoot.getElementById('container');
+      const cs = window.getComputedStyle(container);
+      return {
+        width: parseInt(cs.width || "400", 10),
+        height: parseInt(cs.height || "400", 10),
+      };
+    }
+
+    initThree() {
+      const container = this.shadowRoot.getElementById('container');
+      const { width, height } = this.getSize();
+
+      // Three.js setup
+      this.scene = new THREE.Scene();
+      this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+      this.camera.position.z = 29;
+
+      this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+      this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
+      this.renderer.setSize(width, height);
+      container.appendChild(this.renderer.domElement);
+
+      // Dots parameters
+      const PARTICLE_COUNT = 5500;
+      const RADIUS = 12;
+      const DOT_SIZE = 0.10;
+      const positions = new Float32Array(PARTICLE_COUNT * 3);
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const phi = Math.acos(1 - 2 * (i + 0.5) / PARTICLE_COUNT);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+        const x = RADIUS * Math.sin(phi) * Math.cos(theta);
+        const y = RADIUS * Math.sin(phi) * Math.sin(theta);
+        const z = RADIUS * Math.cos(phi);
+        positions[i * 3] = x;
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = z;
+      }
+
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const material = new THREE.PointsMaterial({
+        color: 0x00fff6,
+        size: DOT_SIZE,
+        transparent: false,
+        opacity: 1.0,
+        depthWrite: false
+      });
+
+      this.particles = new THREE.Points(geometry, material);
+      this.scene.add(this.particles);
+
+      this.animate();
+    }
+
+    resizeThree() {
+      const container = this.shadowRoot.getElementById('container');
+      if (!this.renderer || !this.camera) return;
+      const { width, height } = this.getSize();
+      this.renderer.setSize(width, height, false);
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
+    }
+
+    animate() {
+      this.particles.rotation.y += 0.008;
+      this.particles.rotation.x += 0.0018;
+      this.renderer.render(this.scene, this.camera);
+      this.animationFrame = requestAnimationFrame(() => this.animate());
+    }
+  }
+  // Register the element
+  customElements.define('dotted-ai-ball', DottedAIBall);
   </script>
 </body>
 </html>
