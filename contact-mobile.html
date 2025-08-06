@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivansh Sukhija | Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00ff41;
+  --bg: #000;
+  --text: #fff;
+  --border: rgba(0,255,65,0.17);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; }
+body {
+  font-family: 'Inter', 'Roboto Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+  overflow-x: hidden; overflow-y: auto;
+  padding-bottom: 62px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle 1px at 25% 30%, rgba(0,255,65,.09) 0, transparent 2px),
+    radial-gradient(circle 1px at 75% 60%, rgba(0,255,65,.07) 0, transparent 2px);
+  background-size: 50px 50px;
+  pointer-events: none; z-index: 0;
+}
+/* Nav */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10, 10, 10, 0.91);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+.nav-bar a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 10px;
+  margin: 0 5px;
+  font-family: 'Roboto Mono', monospace;
+}
+.nav-bar a.active {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary);
+}
+/* Main container */
+.main-container {
+  width: 100%;
+  max-width: 625px;
+  margin: 0 auto;
+  padding: 64px 7px 20px 7px;
+  position: relative; z-index: 1;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 8px;
+}
+.page-title {
+  font-size: 1.12rem; font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg,#fff 0%,#e0e0e0 100%);
+  background-clip: text; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-subtitle {
+  font-size: 0.97rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+.contact-grid {
+  display: flex; flex-direction: column; gap: 22px; width: 100%;
+}
+.contact-card, .calendar-card {
+  background: rgba(255,255,255,0.045);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px 9px 12px 15px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 6px;
+  box-shadow: 0 6px 22px rgba(0,255,65,0.075);
+}
+.contact-title, .calendar-title {
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+.contact-description {
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 13px;
+  font-size: 0.92rem;
+  line-height: 1.48;
+}
+.contact-methods{
+  display: flex; flex-direction: column; gap: 10px;
+}
+.contact-method {
+  display: flex; flex-direction: column;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.contact-method:last-child { border-bottom: none; }
+.contact-label{
+  font-family: 'Roboto Mono', monospace;
+  color: var(--primary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700; letter-spacing: 0.04em;
+}
+.contact-value, .contact-link {
+  color: #e1ffe1;
+  font-family: inherit; font-size: 0.95rem;
+  word-break: break-all;
+}
+a.contact-link { color: var(--primary); text-decoration: none; }
+a.contact-link:hover { color: #fff;}
+.calendar-embed {
+  width: 100%; height: 250px;
+  border-radius: 8px; overflow: hidden;
+  margin-top: 9px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: #fff;
+}
+.calendar-embed iframe {
+  width: 100%; height: 100%;
+  border: none; border-radius: 8px;
+}
+.footer {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 42px;
+  background:rgba(10,10,10,0.94);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10.5px; color: rgba(255,255,255,0.7);
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+</style>
+</head>
+<body>
+<nav class="nav-bar">
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a class="active" href="contact-mobile.html">Contact</a>
+</nav>
+<div class="main-container">
+  <header class="page-header">
+    <h1 class="page-title">Let's Build Together</h1>
+    <p class="page-subtitle">Ready to scale your infrastructure? Let's discuss your project.</p>
+  </header>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-title">Get In Touch</div>
+      <div class="contact-description">
+        I'm always excited to work on challenging infrastructure projects. Whether you need scalable backend solutions, secure authentication systems, or DevOps automation, let's discuss how I can help bring your vision to life.
+      </div>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a class="contact-link" href="mailto:sukhija.shivansh@gmail.com">sukhija.shivansh@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">
+            <a class="contact-link" href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank">linkedin.com/in/shivansh-sukhija</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">
+            <a class="contact-link" href="https://github.com/Decodx09" target="_blank">github.com/Decodx09</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Available for remote work worldwide</div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-label">Response Time</div>
+          <div class="contact-value">Usually within 24 hours</div>
+        </div>
+      </div>
+    </div>
+    <div class="calendar-card">
+      <div class="calendar-title">Schedule a Call</div>
+      <div class="calendar-embed">
+        <iframe src="https://cal.com/shivansh-sukhija-2itoy0/30min" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <p>&copy; 2025 Shivansh Sukhija. All rights reserved.</p>
+</footer>
+</body>
+</html>
