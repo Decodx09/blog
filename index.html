@@ -32,35 +32,42 @@
               drop-shadow(0 0 7vw #0ff);
       transition: filter 0.2s;
     }
-    .nav-bar {
-      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Roboto Mono', monospace;
-      background: rgba(8,14,13,0.87);
-      border-bottom: 1px solid rgba(0,255,65,0.16);
-      z-index: 1001;
-      box-shadow: 0 2px 28px #0002;
-    }
-    .nav-bar a {
-      color: #fff; text-decoration: none;
-      font-size: 16px; font-weight: 500; position: relative;
-      padding: 11px 20px; margin: 0 4px;
-      border-radius: 4px;
-      letter-spacing: 0.05em;
-      transition: color .19s cubic-bezier(.4,0,.2,1);
-    }
+
     .nav-bar a.active {
-      color: var(--primary);
+      color: var(--primary-color);
       font-weight: 700;
-      text-shadow: 0 0 12px #00ff4145;
+      text-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
     }
+
     .nav-bar a.active::after {
-      content:''; position:absolute;left:7px;right:7px;bottom:4px;
-      height:2px; background:var(--primary);
-      border-radius:1.5px; box-shadow:0 0 12px #00ff4138;
-      animation: navPulse 1.2s infinite alternate;
+      transform: scaleX(1);
+      animation: pulse 2s ease-in-out infinite alternate;
     }
-    .nav-bar a:hover{color:var(--primary);}
+
+    .nav-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 70px;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(10, 10, 10, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+    }
+
+    .nav-bar a {
+      color: var(--text-color); text-decoration: none;
+      font-size: 16px; font-weight: 500;
+      padding: 8px 16px; margin: 0 20px;
+      font-family: 'Roboto Mono', monospace;
+      transition: color 0.3s;
+    }
+
+    .nav-bar a:hover { color: var(--primary-color); }
+    .nav-bar a.active {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
+    }
+
     @keyframes navPulse {
       from {box-shadow:0 0 6px #00ff4137;}
       to {box-shadow:0 0 18px #00ff41a7,0 0 14px #00ff4107;}
@@ -140,7 +147,7 @@
     <canvas id="ai-solar" style="display:block;width:100vw;height:100vh;"></canvas>
   </div>
   <nav class="nav-bar">
-    <a class="active" href="#">Home</a>
+    <a class="active" href="./index.html">Home</a>
     <a href="./projects.html">Projects</a>
     <a href="./contact.html">Contact</a>
   </nav>
