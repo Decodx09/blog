@@ -126,6 +126,13 @@
       .hero-title{ font-size:1.28rem; padding-top:18px;}
       .hero-text{padding-top: 54px;}
     }
+
+    @media (max-width: 768px) {
+      .bg-solar {
+        opacity: 0.4; 
+        filter: blur(1px) drop-shadow(0 2vw 4vw #00fff608);
+      }
+    }
   </style>
 </head>
 <body>
@@ -148,6 +155,13 @@
   <footer class="footer">&copy; 2025 Shivansh Sukhija. All rights reserved.</footer>
   <!-- Typing Animation -->
   <script>
+    // Add this condition in your JS
+    if (window.innerWidth <= 768) {
+      MAIN_DOTS = 800; // Reduce particles
+      ORBITS = [
+        { r: 80, color: 0x00ff41, size: 0.25, count: 80, speed: 0.6, z: 0.15 }
+      ]; // Single, slower orbit
+    }
     const phrases = [
       'Scalable Infrastructure',
       'Secure Backend Solutions',
