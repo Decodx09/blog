@@ -36,6 +36,17 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+    .nav-bar a.active {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
+    }
+
+    .nav-bar a.active::after {
+      transform: scaleX(1);
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
     
     body::before {
       content: '';
