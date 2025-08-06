@@ -2,433 +2,406 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivansh Sukhija | Get your project done in 2 weeks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shivansh Sukhija's portfolio. I create scalable infrastructure, secure backend solutions, and modern web applications.">
+  <meta name="author" content="Shivansh Sukhija">
+  
+  <title>Shivansh Sukhija | Backend & Infrastructure Developer</title>
 
   <!-- Premium monospace + sans-serif font stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
-
-
+  
   <style>
-    /* ----------  Global reset  ---------- */
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
-    /* ----------  Base page styles  ---------- */
-    body{
-      font-family:'Roboto Mono','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-      background:#000;
-      color:#fff;
-      min-height:100vh;
-      overflow-x:hidden;
-      line-height:1.5;
+    /* GLOBAL RESET */
+    :root {
+      --primary-color: #00ff41;
+      --background-color: #050505;
+      --text-color: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 255, 65, 0.2);
     }
 
-    /* Subtle moving background dots (pure CSS, GPU-friendly) */
-    body::before{
-      content:'';
-      position:fixed;inset:0;
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
       background:
-        radial-gradient(circle 1px at 25% 40%,rgba(0,255,65,.15) 0,transparent 2px),
-        radial-gradient(circle 1px at 75% 60%,rgba(0,255,65,.1) 0,transparent 2px);
-      background-size:6rem 6rem;
-      animation:bgShift 40s linear infinite;
-      pointer-events:none;
-      z-index:0;
-    }
-    @keyframes bgShift{
-      to{background-position:120rem 60rem, -120rem -60rem;}
+        radial-gradient(circle 1px at 25% 40%, rgba(0, 255, 65, .1) 0, transparent 2px),
+        radial-gradient(circle 1px at 75% 60%, rgba(0, 255, 65, .08) 0, transparent 2px);
+      background-size: 8rem 8rem;
+      animation: bgShift 50s linear infinite;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    /* ----------  CONSISTENT Glassy navigation bar  ---------- */
+    @keyframes bgShift {
+      to { background-position: 120rem 60rem, -120rem -60rem; }
+    }
+    
+    /* NAVIGATION BAR */
     .nav-bar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 90px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(25px) saturate(200%);
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(10, 10, 10, 0.7);
+      border-bottom: 1px solid var(--border-color);
       z-index: 1000;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .nav-bar a {
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--text-color);
       text-decoration: none;
       font-size: 16px;
       font-weight: 500;
       position: relative;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.8px;
-      padding: 8px 0;
-      margin: 0 25px;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      margin: 0 20px;
+      font-family: 'Roboto Mono', monospace;
     }
-    
+
     .nav-bar a:hover {
-      color: #00ff41;
-      transform: translateY(-1px);
+      color: var(--primary-color);
+      transform: translateY(-2px);
     }
-    
+
     .nav-bar a::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -4px;
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
+      background: var(--primary-color);
       transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 2px;
+      transform-origin: center;
+      transition: transform 0.4s cubic-bezier(.4, 0, .2, 1);
       box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
     }
     
-    .nav-bar a:hover::after {
-      transform: scaleX(1);
+    .nav-bar a:hover::after { transform: scaleX(1); }
+
+    .nav-bar a.active {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
     }
 
-    .active {
-      color: #00ff41;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-    }
-
-    .active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
+    .nav-bar a.active::after {
       transform: scaleX(1);
-      border-radius: 2px;
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
       animation: pulse 2s ease-in-out infinite alternate;
     }
 
     @keyframes pulse {
-      from { box-shadow: 0 0 15px rgba(0, 255, 65, 0.6); }
-      to { box-shadow: 0 0 25px rgba(0, 255, 65, 0.8), 0 0 35px rgba(0, 255, 65, 0.4); }
+      from { box-shadow: 0 0 12px rgba(0, 255, 65, 0.4); }
+      to { box-shadow: 0 0 25px rgba(0, 255, 65, 0.7), 0 0 35px rgba(0, 255, 65, 0.5); }
     }
 
-    /* ----------  Layout container  ---------- */
-    .main-container{
-      display:flex;flex-wrap:wrap;
-      padding:90px 0 70px; /* FIXED: consistent with nav and footer height */
-      position:relative;z-index:1;
-    }
-
-    /* ----------  Hero section (left)  ---------- */
-    .hero{
-      flex:1 1 420px;
-      padding:80px 60px;
-      display:flex;flex-direction:column;justify-content:center;
-    }
-
-    /* SHADCN-STYLE: Single line title */
-    .hero-title{
-      font-size:clamp(2.2rem,4.5vw,3.8rem);
-      font-weight:700;
-      background:linear-gradient(135deg,#fff 0%,#e0e0e0 100%);
-      -webkit-background-clip:text;background-clip:text;
-      -webkit-text-fill-color:transparent;
-      margin-bottom:16px;
-      white-space:nowrap; /* Keep in single line */
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    /* SHADCN-STYLE: Single line subtitle */
-    .hero-subtitle{
-      font-size:clamp(1.1rem,2.5vw,1.6rem);
-      font-weight:400;
-      color:rgba(255,255,255,.85);
-      white-space:nowrap; /* Keep in single line */
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .hero-subtitle .static{color:#fff}
-    #typed{
-      color:#00ff41;
-      border-right:3px solid #00ff41;
-      padding-right:2px;
-      animation:blink 1s steps(1) infinite;
-    }
-    @keyframes blink{
-      50%{border-color:transparent}
-    }
-
-    /* ----------  Footer  ---------- */
-    .footer{
-      position:fixed;bottom:0;left:0;right:0;height:70px;
-      display:flex;justify-content:center;align-items:center;
-      backdrop-filter:blur(25px) saturate(200%);
-      background:rgba(0,0,0,0.8);
-      border-top:1px solid rgba(0,255,65,0.2);
-      font-size:14px;color:rgba(255,255,255,.7);
-      z-index:1000;
-    }
-
-    /* ----------  Responsive tweaks  ---------- */
-    @media(max-width:768px){
-      .hero{padding:60px 24px}
-      .nav-bar a {
-        margin: 0 15px;
-        font-size: 14px;
-      }
-      .hero-title{
-        white-space:normal; /* Allow wrapping on mobile */
-      }
-      .hero-subtitle{
-        white-space:normal; /* Allow wrapping on mobile */
-      }
-    }
-    @media(max-width:480px){
-      .hero{padding:40px 16px}
-    }
-
-    .ball{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top : 100px;
-    }
-
+    /* MAIN HERO LAYOUT */
     .main-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 100vh;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      padding: 70px 5vw 70px; /* Use viewport width for padding */
+      position: relative;
     }
 
     .hero {
-      flex: 1 1 420px;
-      min-width: 0;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
     }
 
-    .rightball {
-      flex: 0 0 auto;
-      align-self: center;
-      width: min(450px, 32vw);
-      height: min(450px, 32vw);
-      min-width: 100px;
-      min-height: 100px;
-      margin-right: 3vw;
-      margin-bottom: 0;
-      position: relative !important; /* Override fixed positioning */
-      top: 100px;
-      right: 15%;
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 950px) {
-      .main-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .rightball {
-        /* Center ball underneath hero section */
-        margin-top: 32px;
-        margin-right: 100px;
-      }
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Roboto Mono', monospace;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, .85);
+      margin-bottom: 32px;
+      min-height: 1.2em; /* Prevents layout shift */
+    }
+
+    #typed {
+      color: var(--primary-color);
+      border-right: 3px solid var(--primary-color);
+      padding-right: 4px;
+      animation: blink 0.8s steps(1) infinite;
+    }
+    
+    @keyframes blink { 
+      50% { border-color: transparent; }
+    }
+
+    .hero-cta {
+        display: inline-block;
+        font-family: 'Roboto Mono', monospace;
+        background-color: var(--primary-color);
+        color: #000;
+        padding: 14px 28px;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 4px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    }
+    .hero-cta:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 0 35px rgba(0, 255, 65, 0.5);
+    }
+
+    /* FOOTER */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(10, 10, 10, 0.7);
+      border-top: 1px solid var(--border-color);
+      font-size: 14px;
+      color: rgba(255, 255, 255, .7);
+      z-index: 1000;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* RESPONSIVENESS */
+    @media(max-width: 1024px) {
+        .main-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .hero {
+            padding: 40px 20px;
+        }
+    }
+
+    @media(max-width: 768px){
+      .nav-bar a { margin: 0 10px; font-size: 14px; }
+      .hero-title { line-height: 1.2; }
     }
   </style>
 </head>
-
 <body>
-  <!-- ----------  Navigation  ---------- -->
+  <!-- NAVIGATION -->
   <nav class="nav-bar">
-    <a class="active" href="index.html">Home</a>
-    <a href="./blog.html">Projects</a>
-    <a href="./contact.html">Contact</a>
+    <a class="active" href="#home" aria-label="Home">Home</a>
+    <a href="./projects.html" aria-label="Projects">Projects</a>
+    <a href="./contact.html" aria-label="Contact">Contact</a>
   </nav>
 
-  <!-- ----------  Main content  ---------- -->
-  <main class="main-container">
-    <!-- Hero -->
-     <div>
-      <section class="hero">
-        <h1 class="hero-title">Hey, I'm Shivansh</h1>
-        <h2 class="hero-subtitle">
-          <span class="static">I create&nbsp;</span><span id="typed"></span>
-        </h2>
-      </section>
-     </div>
-     <dotted-ai-ball class="rightball"></dotted-ai-ball>
-    </main>
+  <!-- MAIN CONTENT -->
+  <main class="main-container" id="home">
+    <section class="hero">
+      <h1 class="hero-title">Hey, I'm Shivansh</h1>
+      <h2 class="hero-subtitle">
+        <span>I create </span><span id="typed"></span>
+      </h2>
+      <!-- <a href="#projects" class="hero-cta">View My Work</a> -->
+    </section>
+  </main>
 
-  <!-- ----------  Footer  ---------- -->
+  <!-- AI BALL WEB COMPONENT -->
+  <dotted-ai-ball></dotted-ai-ball>
+
+  <!-- FOOTER -->
   <footer class="footer">
     &copy; 2025 Shivansh Sukhija. All rights reserved.
   </footer>
 
-  <!-- ----------  Minimal JS: typing effect only  ---------- -->
+  <!-- TYPING EFFECT SCRIPT -->
   <script>
     const phrases = [
       'Scalable Infrastructure',
-      'Secure Backend Solutions'
+      'Secure Backend Solutions',
+      'Modern Web Applications',
     ];
     const el = document.getElementById('typed');
-    let idx = 0, char = 0, del = false;
+    let phraseIndex = 0, charIndex = 0, isDeleting = false;
 
-    (function type(){
-      const current = phrases[idx];
-      el.textContent = del ? current.slice(0,--char) : current.slice(0,++char);
+    (function type() {
+      const currentPhrase = phrases[phraseIndex];
+      const speed = isDeleting ? 60 : 110;
 
-      if(!del && char === current.length){del = true;setTimeout(type,2000);return;}
-      if(del && char === 0){del = false;idx = (idx+1)%phrases.length;}
+      el.textContent = currentPhrase.substring(0, charIndex);
 
-      setTimeout(type, del ? 60 : 110);
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+      
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+      
+      charIndex += isDeleting ? -1 : 1;
+      setTimeout(type, speed);
     })();
   </script>
+
+  <!-- AI BALL WEB COMPONENT SCRIPT -->
   <script>
-  class DottedAIBall extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({mode: 'open'});
-      this.resizeListener = null;
-    }
-
-    connectedCallback() {
-      // Responsive container: always fixed to right & vertically centered, scales down for small screens
-      this.shadowRoot.innerHTML = `
-        <style>
-            :host {
-              display: block;
-              width: 100%;
-              height: 100%;
-              pointer-events: none;
-            }
-            #container {
-              width: 100%;
-              height: 100%;
-            }
-            canvas {
-              display: block;
-              width: 100%;
-              height: 100%;
-            }
-          @media (max-width: 700px) {
-            :host {
-              top: 109vw;
-              right: 50px;
-            }
-            #container {
-              width: 42vw;
-              height: 42vw;
-              min-width: 200px;
-              min-height: 200px;
-              max-width: 200vw;
-              max-height: 200vw;
-            }
-          }
-          @media (max-width: 480px) {
-            :host {
-              top: 109vw;
-              right: 20vw;
-            }
-            #container {
-              width: 32vw;
-              height: 32vw;
-              min-width: 60px;
-              min-height: 60px;
-            }
-          }
-        </style>
-        <div id="container"></div>
-      `;
-
-      this.initThree();
-      this.resizeListener = () => this.resizeThree();
-      window.addEventListener('resize', this.resizeListener);
-    }
-
-    disconnectedCallback() {
-      window.removeEventListener('resize', this.resizeListener);
-    }
-
-    // Dynamically determine size based on container/client width
-    getSize() {
-      // Only use the computed style for the container
-      const container = this.shadowRoot.getElementById('container');
-      const cs = window.getComputedStyle(container);
-      return {
-        width: parseInt(cs.width || "400", 10),
-        height: parseInt(cs.height || "400", 10),
-      };
-    }
-
-    initThree() {
-      const container = this.shadowRoot.getElementById('container');
-      const { width, height } = this.getSize();
-
-      // Three.js setup
-      this.scene = new THREE.Scene();
-      this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-      this.camera.position.z = 29;
-
-      this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
-      this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
-      this.renderer.setSize(width, height);
-      container.appendChild(this.renderer.domElement);
-
-      // Dots parameters
-      const PARTICLE_COUNT = 5500;
-      const RADIUS = 12;
-      const DOT_SIZE = 0.10;
-      const positions = new Float32Array(PARTICLE_COUNT * 3);
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const phi = Math.acos(1 - 2 * (i + 0.5) / PARTICLE_COUNT);
-        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
-        const x = RADIUS * Math.sin(phi) * Math.cos(theta);
-        const y = RADIUS * Math.sin(phi) * Math.sin(theta);
-        const z = RADIUS * Math.cos(phi);
-        positions[i * 3] = x;
-        positions[i * 3 + 1] = y;
-        positions[i * 3 + 2] = z;
-      }
-
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      const material = new THREE.PointsMaterial({
-        color: 0x00fff6,
-        size: DOT_SIZE,
-        transparent: false,
-        opacity: 1.0,
-        depthWrite: false
-      });
-
-      this.particles = new THREE.Points(geometry, material);
-      this.scene.add(this.particles);
-
-      this.animate();
-    }
-
-    resizeThree() {
-      const container = this.shadowRoot.getElementById('container');
-      if (!this.renderer || !this.camera) return;
-      const { width, height } = this.getSize();
-      this.renderer.setSize(width, height, false);
-      this.camera.aspect = width / height;
-      this.camera.updateProjectionMatrix();
-    }
-
-    animate() {
-      this.particles.rotation.y += 0.008;
-      this.particles.rotation.x += 0.0018;
-      this.renderer.render(this.scene, this.camera);
-      this.animationFrame = requestAnimationFrame(() => this.animate());
-    }
+class DottedAIBall extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode: 'open'});
   }
-  // Register the element
-  customElements.define('dotted-ai-ball', DottedAIBall);
+
+  connectedCallback() {
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          position: fixed;
+          top: 50%;
+          right: max(32px, 5vw); /* Responsive positioning */
+          transform: translateY(-50%);
+          z-index: -1; /* Place behind content */
+          pointer-events: none;
+          display: block;
+        }
+        #container {
+          width: min(400px, 30vw);
+          height: min(400px, 30vw);
+        }
+        canvas {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        @media (max-width: 1024px) {
+          :host { display: none !important; }
+        }
+      </style>
+      <div id="container"></div>
+    `;
+    this.initThree();
+    window.addEventListener('resize', () => this.resizeThree(), { passive: true });
+  }
+
+  initThree() {
+    const container = this.shadowRoot.getElementById('container');
+    const style = getComputedStyle(container);
+    const width = parseInt(style.width), height = parseInt(style.height);
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+    this.camera.position.z = 29;
+    
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize(width, height, false);
+    container.appendChild(this.renderer.domElement);
+
+    // Optimized particle settings
+    const PARTICLE_COUNT = 5000, RADIUS = 14, DOT_SIZE = 0.14;
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const phi = Math.PI * (3 - Math.sqrt(5)); // Golden Angle
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2; // y goes from 1 to -1
+        const radius = Math.sqrt(1 - y * y);
+        const theta = phi * i;
+
+        positions[i * 3] = Math.cos(theta) * radius * RADIUS;
+        positions[i * 3 + 1] = y * RADIUS;
+        positions[i * 3 + 2] = Math.sin(theta) * radius * RADIUS;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    
+    const material = new THREE.PointsMaterial({
+      color: 0x00fff6,
+      size: DOT_SIZE,
+      transparent: true,
+      opacity: 0.8,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    this.particles = new THREE.Points(geometry, material);
+    this.scene.add(this.particles);
+
+    this.animate();
+  }
+
+  resizeThree() {
+    if (!this.renderer || !this.camera) return;
+    const container = this.shadowRoot.getElementById('container');
+    const style = getComputedStyle(container);
+    const width = parseInt(style.width), height = parseInt(style.height);
+    
+    this.renderer.setSize(width, height, false);
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+  }
+
+  animate() {
+    if (!this.particles) return;
+    requestAnimationFrame(() => this.animate());
+
+    this.particles.rotation.y += 0.002;
+    this.particles.rotation.x += 0.0005;
+    
+    this.renderer.render(this.scene, this.camera);
+  }
+}
+customElements.define('dotted-ai-ball', DottedAIBall);
   </script>
 </body>
 </html>

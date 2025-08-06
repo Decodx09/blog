@@ -3,227 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A selection of projects by Shivansh Sukhija, showcasing work in backend development, scalable infrastructure, and modern web applications.">
+  <meta name="author" content="Shivansh Sukhija">
   <title>Shivansh Sukhija | Projects</title>
+
   <!-- Premium monospace + sans-serif font stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
-    body{
-      font-family:'Inter','Roboto Mono',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-      background:#000;
-      color:#fff;
-      min-height:100vh;
-      overflow-x:hidden;
-      line-height:1.6;
-      letter-spacing:0.01em;
-      font-size:15px;
+    /* GLOBAL STYLES */
+    :root {
+      --primary-color: #00ff41;
+      --background-color: #050505;
+      --text-color: rgba(255, 255, 255, 0.9);
+      --border-color: rgba(0, 255, 65, 0.15);
+      --card-bg: rgba(255, 255, 255, 0.03);
     }
 
-    /* Soft animated background dots */
-    body::before{
-      content:'';
-      position:fixed;inset:0;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
       background:
-        radial-gradient(circle 1.5px at 18% 33%,rgba(0,255,65,.10) 0,transparent 3px),
-        radial-gradient(circle 1.5px at 62% 65%,rgba(0,255,65,.06) 0,transparent 3px),
-        radial-gradient(circle 0.7px at 90% 12%,rgba(0,255,65,.04) 0,transparent 2px);
-      background-size:7rem 7rem, 8rem 8rem, 13rem 13rem;
-      animation:bgShift 70s linear infinite;
-      pointer-events:none;
-      z-index:0;
-    }
-    @keyframes bgShift{
-      to{background-position:90rem 60rem,-80rem -60rem,74rem 80rem;}
+        radial-gradient(circle 1px at 18% 33%, rgba(0,255,65,.1) 0, transparent 2px),
+        radial-gradient(circle 1px at 62% 65%, rgba(0,255,65,.08) 0, transparent 2px);
+      background-size: 8rem 8rem;
+      animation: bgShift 60s linear infinite;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    /* Consistent refined nav bar */
+    @keyframes bgShift { to { background-position: 120rem 60rem, -120rem -60rem; } }
+
+    /* NAVIGATION BAR */
     .nav-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0; height: 80px;
+      position: fixed; top: 0; left: 0; right: 0; height: 70px;
       display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(30px) saturate(180%);
-      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(10, 10, 10, 0.7);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 1000;
     }
+
     .nav-bar a {
-      color: rgba(255, 255, 255, 0.75);
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 8px;
-      padding: 10px 16px;
-      margin: 0 8px;
-      position:relative;
-      transition: all 0.2s;
-    }
-    .nav-bar a:hover { color: #fff; background: rgba(255,255,255,0.07);}
-    .active {
-      color: #00ff41 !important;
-      background: rgba(0, 255, 65, 0.10);
-      font-weight: 600;
-      text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      color: var(--text-color); text-decoration: none;
+      font-size: 16px; font-weight: 500;
+      padding: 8px 16px; margin: 0 20px;
+      font-family: 'Roboto Mono', monospace;
+      transition: color 0.3s;
     }
 
-    /* Main & header */
+    .nav-bar a:hover { color: var(--primary-color); }
+    .nav-bar a.active {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(0, 255, 65, 0.4);
+    }
+
+    /* MAIN CONTAINER & HEADER */
     .main-container {
-      max-width: 800px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 100px 16px 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 120px 24px 80px;
       position: relative;
       z-index: 1;
     }
 
     .page-header {
-      margin: 32px 0 40px;
       text-align: center;
+      margin-bottom: 60px;
     }
+
     .page-title {
-      font-size:clamp(2.3rem,5vw,3.2rem);
-      font-weight:700;
-      margin-bottom:14px;
-      background:linear-gradient(135deg,#fff 0%,#f0f0f0 40%,#e8e8e8 85%,#fff 100%);
-      background-clip:text; -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      letter-spacing:-0.025em;
-      animation: fadeInUp .8s ease-out both;
+      font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, #e8e8e8 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp .8s .1s ease-out both;
     }
+
     .page-subtitle {
-      font-size:1.18rem;
-      color:rgba(255,255,255,0.65);
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      font-weight:400;margin-bottom:0;
-      animation: fadeInUp .9s .12s ease-out both;
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp .8s .2s ease-out both;
     }
 
-    @keyframes fadeInUp{
-      from{opacity:0;transform:translateY(20px);}
-      to{opacity:1;transform:translateY(0);}
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Projects list */
+    /* PROJECTS GRID */
     .projects-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 32px;
-      width:100%;
-      margin-top:28px;
-      margin-bottom:60px;
-      animation: fadeInUp 1s .14s ease-out both;
     }
-
+    
     .project-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(0, 255, 65, 0.10);
-      border-radius: 16px;
-      padding: 28px 30px 20px 30px;
-      box-shadow: 0 2px 12px 0 rgba(0,255,65,0.03);
-      transition: all .22s;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap:8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      animation: fadeInUp .8s .3s ease-out both;
+      opacity: 0; /* Initially hidden for animation */
     }
+    
+    /* Staggered animation */
+    .project-card:nth-child(2) { animation-delay: .4s; }
+    .project-card:nth-child(3) { animation-delay: .5s; }
+
     .project-card:hover {
-      background:rgba(0,255,65,0.03);
-      border-color:rgba(0,255,65,0.25);
-      transform: scale(1.021) translateY(-2px);
-      box-shadow: 0 6px 36px rgba(10,255,95,0.07);
-      z-index:2;
+      transform: translateY(-5px);
+      border-color: rgba(0, 255, 65, 0.4);
+      box-shadow: 0 8px 40px rgba(0, 255, 65, 0.1);
     }
-    .project-header{
-      display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;
+    
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 12px;
     }
-    .project-title{
-      font-size:1.39rem;font-weight:600;letter-spacing:-0.01em;color:#fff;
+    
+    .project-title {
+      font-size: 1.4rem; font-weight: 600; color: #fff;
     }
-    .project-type{
-      font-size:0.93rem;
-      color:#00ff41;
-      font-weight:500;
-      text-transform:uppercase;
-      border:1px solid rgba(0,255,65,0.18);
-      padding: 3px 14px;
-      border-radius:15px;
-      background:rgba(0,255,65,0.06);
-      letter-spacing:.07em;
-      margin-left:10px;
+    
+    .project-type {
+      font-size: 0.8rem; color: var(--primary-color);
+      font-weight: 500; text-transform: uppercase;
+      border: 1px solid rgba(0, 255, 65, 0.25);
+      padding: 4px 12px; border-radius: 20px;
+      background: rgba(0, 255, 65, 0.1);
+      letter-spacing: .05em; white-space: nowrap;
     }
-    .project-description{
-      color:rgba(255,255,255,0.83);
-      font-size:1.01rem;
-      margin-bottom:6px;
-      line-height:1.6;
-      font-family:'Inter',sans-serif;
+
+    .project-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.6;
+      flex-grow: 1; /* Allows footer to align */
     }
-    .project-tech{
-      display:flex;gap:9px;margin:7px 0 6px 0;flex-wrap:wrap;
+
+    .project-tech {
+      display: flex; gap: 8px; margin: 16px 0;
+      flex-wrap: wrap;
     }
-    .tech-tag{
-      background:rgba(0,255,65,0.08);
-      color:#8cffbb;
-      padding:4px 11px;
-      border-radius:12px;
-      font-size:0.93rem;
-      border:1px solid rgba(0,255,65,0.17);
-      font-family:'Roboto Mono',monospace;
-      letter-spacing: 0.03em;
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.05);
+      color: #b0eecb;
+      padding: 5px 12px; border-radius: 6px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'Roboto Mono', monospace;
     }
-    .project-links {
-      display:flex;gap:13px;margin-top:8px;
-    }
+
+    .project-links { display: flex; gap: 12px; margin-top: auto; }
+
     .project-link {
-      color:#00ff41 !important;
-      text-decoration:none;
-      font-weight:500;
-      font-size:0.98rem;
-      padding:7px 16px;
-      border-radius:9px;
-      border:1px solid rgba(0,255,65,0.22);
-      background:rgba(0,255,65,0.04);
-      transition: all .18s;
-      outline:none;
-      cursor:pointer;
-    }
-    .project-link:hover{
-      background:rgba(0,255,65,0.12);
-      color:#fff !important;
-      border-color:#00ff41;
+      color: var(--text-color); text-decoration: none;
+      font-weight: 500; font-size: 0.9rem;
+      padding: 8px 14px; border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      transition: all .2s;
+      display: flex; align-items: center; gap: 8px;
     }
 
-    /* Footer */
-    .footer{
-      position:fixed;bottom:0;left:0;right:0;height:60px;
-      display:flex;justify-content:center;align-items:center;
-      backdrop-filter:blur(30px) saturate(180%);
-      background:rgba(0,0,0,0.85);
-      border-top:1px solid rgba(255,255,255,0.07);
-      font-size:13px;color:rgba(255,255,255,.6);
-      z-index:1000;
-      font-weight:400;
-      letter-spacing:0.2px;
+    .project-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .project-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* FOOTER */
+    .footer {
+      position: static; /* No longer fixed */
+      margin-top: 80px;
+      height: 60px;
+      display: flex; justify-content: center; align-items: center;
+      background: transparent;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px; color: rgba(255, 255, 255, .7);
+      font-family: 'Roboto Mono', monospace;
     }
 
-    /* Responsive tweaks */
-    @media(max-width:700px){
-      .main-container {padding:100px 5vw 50px;}
-      .projects-grid{gap:21px;}
-      .project-card{padding:18px 10px;}
-      .footer{height:50px;font-size:12px;}
-      .page-header{margin:20px 0 22px;}
-      .page-title,.page-subtitle{white-space:normal;}
-    }
-    @media(max-width:480px){
-      .main-container{padding:80px 1.2rem 40px;}
-      .project-title { font-size:1.13rem; }
-      .project-description {font-size:0.97rem;}
-      .footer{height:46px;}
+    /* RESPONSIVENESS */
+    @media(max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .main-container { padding: 100px 16px 60px; }
+      .page-header { margin-bottom: 40px; }
     }
   </style>
 </head>
@@ -236,43 +228,102 @@
 
   <div class="main-container">
     <header class="page-header">
-      <h1 class="page-title">Projects</h1>
-      <div class="page-subtitle">Building scalable infrastructure &amp; secure backend solutions</div>
+      <h1 class="page-title">My Work</h1>
+      <p class="page-subtitle">A collection of projects where I've architected and built scalable, secure, and performant systems.</p>
     </header>
 
     <div class="projects-grid">
-      <div class="project-card featured-project">
-        <div class="project-content">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">CloudScale Infrastructure</h3>
-            </div>
-            <span class="project-type">Infrastructure</span>
-          </div>
-          <p class="project-description">
-            A comprehensive cloud infrastructure solution built with Kubernetes and Terraform. 
-            Handles auto-scaling, load balancing, and monitoring for enterprise-level applications 
-            with 99.9% uptime guarantee. Supports microservices architecture with CI/CD pipelines.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Kubernetes</span>
-            <span class="tech-tag">Terraform</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">AWS</span>
-            <span class="tech-tag">Prometheus</span>
-            <span class="tech-tag">Grafana</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link">GitHub</a>
-            <a href="#" class="project-link">Documentation</a>
-          </div>
+      <!-- Project 1: Featured -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">CloudScale Platform</h3>
+          <span class="project-type">Infrastructure</span>
+        </div>
+        <p class="project-description">Computer Networks Fundamentals</p>
+        <div class="project-tech">
+          <span class="tech-tag">Fundamentals</span>
+          <span class="tech-tag">Protocols</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            GitHub
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Live Demo
+          </a>
         </div>
       </div>
 
-      <!-- Repeat this .project-card block for each project -->
-      <!-- ... (other projects unchanged) ... -->
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">SAuth</h3>
+          <span class="project-type">Backend API</span>
+        </div>
+        <p class="project-description">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">JWT</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Jest</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">Kubernetes Deployment</h3>
+          <span class="project-type">Full-Stack App</span>
+        </div>
+        <p class="project-description">A real-time data visualization dashboard that processes and displays analytics from various sources. Built with a modern front-end framework and a resilient backend service.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Performance</span>
+          <span class="tech-tag">Deployment</span>
+          <span class="tech-tag">Scalability</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            GitHub
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">Efficient-Database</h3>
+          <span class="project-type">Backend API</span>
+        </div>
+        <p class="project-description">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Kafka</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">MySQL</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+
   <footer class="footer">
     &copy; 2025 Shivansh Sukhija. All rights reserved.
   </footer>

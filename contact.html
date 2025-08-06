@@ -1,576 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivansh Sukhija | Contact</title>
-  <style>
-    /* Import premium fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivansh Sukhija | Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00ff41;
+  --primary-glow: rgba(0,255,65,0.18);
+  --input-bg: #101010;
+  --border: rgba(0,255,65,0.11);
+  --bg: #000;
+  --text: #fff;
+  --nav-height: 90px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', 'Roboto Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle 1.5px at 18% 33%, rgba(0,255,65,.08) 0, transparent 3px),
+    radial-gradient(circle 1.5px at 62% 65%, rgba(0,255,65,.07) 0, transparent 3px);
+  background-size: 7rem 7rem, 8rem 8rem;
+  animation: bgShift 70s linear infinite;
+  pointer-events: none; z-index: 0;
+}
+@keyframes bgShift {
+  to {background-position:90rem 60rem,-80rem -60rem;}
+}
+/* NAV */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(25px) saturate(200%);
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0,255,65,0.2);
+  z-index: 1000;
+}
+.nav-bar a {
+  color: rgba(255,255,255,0.9); text-decoration: none;
+  font-size: 16px; font-weight: 500; position: relative;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  letter-spacing: 0.8px; padding: 8px 0; margin: 0 25px;
+  font-family: 'Roboto Mono', monospace;
+}
+.nav-bar a:hover { color: var(--primary); transform: translateY(-1px);}
+.nav-bar a::after {
+  content:'';
+  position:absolute;bottom:-8px;left:0;
+  width: 100%;height:2px;
+  background:linear-gradient(90deg,var(--primary),#00cc33,#00ff88);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.4s cubic-bezier(.4,0,.2,1);
+  border-radius:2px;
+  box-shadow:0 0 10px var(--primary-glow);
+}
+.nav-bar a:hover::after {transform:scaleX(1);}
+.active {
+  color: var(--primary);
+  font-weight: 600;
+  text-shadow: 0 0 15px var(--primary-glow);
+}
+.active::after {
+  content:'';
+  position:absolute;bottom:-8px;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--primary),#00cc33,#00ff88);
+  transform:scaleX(1);border-radius:2px;
+  box-shadow:0 0 15px var(--primary-glow);
+  animation:pulse 2s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  from {box-shadow:0 0 15px var(--primary-glow);}
+  to {box-shadow:0 0 27px rgba(0,255,65,0.28);}
+}
+.page-header {
+  width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 0 32px 0;
+  padding-top: calc(var(--nav-height) + 24px);
+  position: relative;
+  animation: fadeInUp 1s ease-out;
+}
+.page-title {
+  font-size: clamp(2.2rem,4.5vw,3.2rem);
+  font-weight: 700;
+  margin-bottom: 13px;
+  background: linear-gradient(135deg,#fff 0%,#e0e0e0 100%);
+  background-clip: text; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+.page-subtitle {
+  font-size: clamp(1.1rem,2vw,1.2rem);
+  color:rgba(255,255,255,0.68);
+  text-align: center;
+  margin-bottom: 0;
+  max-width: 560px;
+}
 
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* GRID */
+.main-container {
+  max-width: 1100px;
+  margin: 0 auto 0 auto;
+  padding: 38px 22px 110px;
+  min-height: 70vh;
+  z-index: 2;
+  position: relative;
+}
+.contact-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0; /* was 42px or similar */
+  align-items: stretch; justify-items: stretch;
+}
+@media (max-width:900px) {
+  .contact-grid {grid-template-columns:1fr; gap: 27px;}
+}
 
-    body {
-      font-family: 'Roboto Mono', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #000000;
-      color: #fff;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+/* CARDS - modern floating feel */
+.contact-card, .calendar-card {
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 38px 32px;
+  box-shadow: 0 12px 40px rgba(0,255,41,0.065), 0 1.5px 18px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.44s;
+  position:relative;
+  animation: fadeInUp 0.85s cubic-bezier(0.37,0.21,0.21,1);
+  margin-bottom: 5px;
+  margin-left : 10px;
+}
+.contact-card:hover, .calendar-card:hover {
+  transform: translateY(-3px) scale(1.012);
+  border-color: var(--primary-glow);
+  box-shadow: 0 20px 50px 0 var(--primary-glow), 0 2px 8px 0 rgba(0,0,0,0.11);
+}
 
-    /* Subtle animated background pattern */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.01) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.01) 0%, transparent 50%);
-      animation: subtleShift 20s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 1;
-    }
+.contact-title, .calendar-title {
+  font-size: 1.28rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  margin-bottom: 15px;
+  background:linear-gradient(90deg,#fff 0%,#d3ffd7 100%);
+  background-clip:text; -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.contact-description {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+  font-size: 1.09rem;
+  line-height: 1.63;
+}
+.contact-methods{
+  display: flex; flex-direction: column; gap: 14px;
+  margin-top: 8px;
+}
+.contact-method {
+  display: flex; align-items: flex-start; gap: 13px;
+  font-size: 1rem;
+  padding: 7px 0;
+  border-radius: 8px;
+}
+.contact-label{
+  font-family: 'Roboto Mono', monospace;
+  color: #f6f6f6;
+  font-weight: 600;
+  min-width: 90px;
+  display: flex; align-items: center; gap:5px;
+  font-size: 0.99rem;
+}
+.contact-value {
+  font-family: 'Inter', monospace;
+  color: #e6ffe9;
+  font-weight: 500;
+  word-break: break-all;
+}
+a.contact-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
+  transition: color 0.18s;
+}
+a.contact-link:hover {
+  color: #fff;
+  text-shadow: 0 0 5px var(--primary);
+}
+.contact-method svg {
+  height: 1.15em; width: 1.15em;
+  margin-right: 6px; vertical-align: -0.18em;
+}
 
-    @keyframes subtleShift {
-      0% { opacity: 0.3; }
-      100% { opacity: 0.6; }
-    }
+.calendar-embed {
+  width: 100%;
+  min-height: 390px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255,255,255,0.09);
+  background: rgba(0,0,0,0.11);
+  margin-top: 13px;
+}
+.calendar-embed iframe {
+  width: 100%;
+  min-height: 390px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+}
 
-    /* ORIGINAL PREMIUM GLASS NAV BAR - EXACTLY AS HOMEPAGE */
-    .nav-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(25px) saturate(200%);
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-      z-index: 1000;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .nav-bar a {
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      position: relative;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: 0.8px;
-      padding: 8px 0;
-      margin: 0 25px;
-    }
-    
-    .nav-bar a:hover {
-      color: #00ff41;
-      transform: translateY(-1px);
-    }
-    
-    .nav-bar a::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 2px;
-      box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-    }
-    
-    .nav-bar a:hover::after {
-      transform: scaleX(1);
-    }
+/* Footer - matches homepage/projects */
+.footer {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 70px;
+  background: rgba(0,0,0,0.8);
+  border-top: 1px solid rgba(0,255,65,0.2);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(25px) saturate(200%);
+  font-family: 'Roboto Mono', monospace;
+  z-index:1000;
+}
+.footer p {
+  margin: 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px; font-weight: 400; letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(0,255,65,0.1);
+}
 
-    .active {
-      color: #00ff41;
-      font-weight: 600;
-      margin-left: 100px;
-      margin-right: 100px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-    }
-
-    .active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #00ff41, #00cc33, #00ff88);
-      transform: scaleX(1);
-      border-radius: 2px;
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
-      animation: pulse 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulse {
-      from { box-shadow: 0 0 15px rgba(0, 255, 65, 0.6); }
-      to { box-shadow: 0 0 25px rgba(0, 255, 65, 0.8), 0 0 35px rgba(0, 255, 65, 0.4); }
-    }
-
-    /* Main container with better spacing */
-    .main-container {
-      padding: 120px 20px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Page header with smaller text */
-    .page-header {
-      text-align: center;
-      margin-bottom: 48px;
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    .page-title {
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      font-weight: 600;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .page-subtitle {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
-
-    /* Contact grid with better responsive behavior */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    @media (min-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-      }
-    }
-
-    /* Contact cards with softer appearance */
-    .contact-info {
-      animation: fadeInUp 0.6s ease-out 0.1s both;
-    }
-
-    .contact-card {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 24px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 255, 65, 0.15);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .contact-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .contact-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .contact-description {
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.5;
-      margin-bottom: 24px;
-      font-size: 14px;
-    }
-
-    .contact-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-method {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.2s ease;
-    }
-
-    .contact-method:hover {
-      background: rgba(0, 255, 65, 0.05);
-      border-color: rgba(0, 255, 65, 0.1);
-      transform: translateX(2px);
-    }
-
-    .contact-icon {
-      font-size: 18px;
-      color: #00ff41;
-      min-width: 24px;
-      opacity: 0.9;
-    }
-
-    .contact-details h4 {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .contact-details p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 13px;
-    }
-
-    .contact-details a {
-      color: rgba(0, 255, 65, 0.9);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .contact-details a:hover {
-      color: #00ff41;
-    }
-
-    /* Calendar section */
-    .calendar-section {
-      animation: fadeInUp 0.6s ease-out 0.2s both;
-    }
-
-    .calendar-card {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 24px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .calendar-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 255, 65, 0.15);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .calendar-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .calendar-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 16px;
-      letter-spacing: -0.01em;
-    }
-
-    /* Cal.com embed with better styling */
-    .calendar-embed {
-      width: 100%;
-      min-height: 500px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .calendar-embed iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 8px;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ORIGINAL PREMIUM FOOTER - EXACTLY AS HOMEPAGE */
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(25px) saturate(200%);
-      background: rgba(0, 0, 0, 0.8);
-      border-top: 1px solid rgba(0, 255, 65, 0.2);
-      z-index: 1000;
-    }
-
-    .footer p {
-      margin: 0;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, #00ff41, #00cc33);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(45deg, #00cc33, #00ff41);
-    }
-
-    /* Mobile-first responsive design */
-    @media (max-width: 768px) {
-      .main-container {
-        padding: 120px 16px 80px;
-      }
-      
-      .nav-bar a {
-        margin: 0 15px;
-        font-size: 14px;
-      }
-      
-      .active {
-        margin-left: 50px;
-        margin-right: 50px;
-      }
-      
-      .contact-card, .calendar-card {
-        padding: 20px;
-      }
-      
-      .calendar-embed iframe {
-        height: 450px;
-      }
-      
-      .page-title {
-        font-size: 1.5rem;
-      }
-      
-      .page-subtitle {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .main-container {
-        padding: 120px 12px 80px;
-      }
-      
-      .contact-card, .calendar-card {
-        padding: 16px;
-      }
-      
-      .calendar-embed iframe {
-        height: 400px;
-      }
-      
-      .contact-methods {
-        gap: 8px;
-      }
-      
-      .contact-method {
-        padding: 10px;
-      }
-    }
-
-    /* Dark mode optimizations */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #000000;
-      }
-    }
-
-    /* Reduced motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+/* Responsive tweaks */
+@media (max-width:700px){
+  .contact-card,.calendar-card {padding:15px 5px;}
+  .main-container{padding:8px 0 60px;}
+  .footer{height:42px;}
+  .page-title{font-size:1.3rem;}
+  .contact-grid{gap:18px;}
+}
+@media (max-width:460px){
+  .calendar-embed{min-height:190px;}
+  .calendar-embed iframe{min-height:170px;}
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
 </head>
 <body>
-  <nav class="nav-bar">
-    <a href="index.html">Home</a>
-    <a href="blog.html">Projects</a>
-    <a class="active" href="contact.html">Contact</a>
-  </nav>
-
-  <div class="main-container">
-    <header class="page-header">
-      <h1 class="page-title">Let's Build Together</h1>
-      <p class="page-subtitle">Ready to scale your infrastructure? Let's discuss your project</p>
-    </header>
-
-    <div class="contact-grid">
-      <!-- Contact Information -->
-      <div class="contact-info">
-        <div class="contact-card">
-          <div class="contact-content">
-            <h2 class="contact-title">Get In Touch</h2>
-            <p class="contact-description">
-              I'm always excited to work on challenging infrastructure projects. Whether you need 
-              scalable backend solutions, secure authentication systems, or complete DevOps automation, 
-              let's discuss how I can help bring your vision to life.
-            </p>
-            
-            <div class="contact-methods">
-              <div class="contact-method">
-                <div class="contact-icon">✉️</div>
-                <div class="contact-details">
-                  <h4>Email</h4>
-                  <p><a href="mailto:sukhija.shivansh@gmail.com">sukhija.shivansh@gmail.com</a></p>
-                </div>
-              </div>
-              
-              <div class="contact-method">
-                <div class="contact-icon">💬</div>
-                <div class="contact-details">
-                  <h4>LinkedIn</h4>
-                  <p><a href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank">linkedin.com/in/shivansh-sukhija</a></p>
-                </div>
-              </div>
-              
-              <div class="contact-method">
-                <div class="contact-icon">🐙</div>
-                <div class="contact-details">
-                  <h4>GitHub</h4>
-                  <p><a href="https://github.com/Decodx09" target="_blank">github.com/Decodx09</a></p>
-                </div>
-              </div>
-              
-              <div class="contact-method">
-                <div class="contact-icon">🌍</div>
-                <div class="contact-details">
-                  <h4>Location</h4>
-                  <p>Available for remote work worldwide</p>
-                </div>
-              </div>
-              
-              <div class="contact-method">
-                <div class="contact-icon">⚡</div>
-                <div class="contact-details">
-                  <h4>Response Time</h4>
-                  <p>Usually within 24 hours</p>
-                </div>
-              </div>
-            </div>
+<nav class="nav-bar">
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a class="active" href="contact.html">Contact</a>
+</nav>
+<div class="main-container">
+  <header class="page-header">
+    <h1 class="page-title">Let's Build Together</h1>
+    <p class="page-subtitle">Ready to scale your infrastructure? Let's discuss your project.</p>
+  </header>
+  <div class="contact-grid">
+    <!-- LEFT: Contact Info -->
+    <div class="contact-card">
+      <div class="contact-content">
+        <h2 class="contact-title">Get In Touch</h2>
+        <p class="contact-description">
+          I'm always excited to work on challenging infrastructure projects. Whether you need 
+          scalable backend solutions, secure authentication systems, or DevOps automation, let's discuss how I can help bring your vision to life.
+        </p>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <span class="contact-label">
+              <svg style="color:#fff" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="currentColor"/><path d="M4.25 6.75l5.75 4.25 5.75-4.25" stroke="#00ff41" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Email
+            </span>
+            <span class="contact-value">
+              <a class="contact-link" href="mailto:sukhija.shivansh@gmail.com">sukhija.shivansh@gmail.com</a>
+            </span>
           </div>
-        </div>
-      </div>
-
-      <!-- Calendar Booking -->
-      <div class="calendar-section">
-        <div class="calendar-card">
-          <div class="calendar-content">
-            <h2 class="calendar-title">Schedule a Call</h2>
-            
-            <!-- Cal.com Embed -->
-            <div class="calendar-embed">
-              <iframe 
-                src="https://cal.com/shivansh-sukhija-2itoy0/30min" 
-                frameborder="0"
-                allowfullscreen>
-              </iframe>
-            </div>
+          <div class="contact-method">
+            <span class="contact-label">
+              <svg style="color:#fff" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="currentColor"/><path d="M6.7 9.5c.3-1.2 1.8-1.2 2.1 0 .2.6.9 1 1.5.7C13 10 14 8.7 14 7.1 14 5.3 12.6 4 11 4c-.7 0-1.4.3-2 .7-1.2.8-2.2 2-2.8 3.3-.4.8-.2 1.7.7 2.1.8.4 1.6 0 1.8-.5z" stroke="#00ff41" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              LinkedIn
+            </span>
+            <span class="contact-value">
+              <a class="contact-link" href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank">linkedin.com/in/shivansh-sukhija</a>
+            </span>
+          </div>
+          <div class="contact-method">
+            <span class="contact-label">
+              <svg style="color:#fff" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="currentColor"/><path d="M10 2.5c-4.1 0-7.5 3.3-7.5 7.5 0 3.5 2.1 6.4 5.1 7.2.4.1.5-.2.5-.4v-1.5c-2 .4-2.6-.5-2.8-.9-.1-.3-.5-.9-.8-1.1-.3-.2-.7-.5-.01-.6.6 0 1.1.6 1.2.8.7 1.2 1.9.8 2.3.6.1-.5.3-.9.5-1.1-1.7-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.2-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.7-.2 1.3-.3 2-.3.7 0 1.4.1 2 .3 1.5-1 2.2-.8 2.2-.8.4 1.1.1 1.9.1 2.1.5.6.8 1.3.8 2.2 0 3.1-1.9 3.7-3.7 3.9.3.2.6.7.6 1.5 0 1.1-.1 1.9-.1 2.2 0 .2.1.5.5.4 3-1 5.1-3.8 5.1-7.2 0-4.2-3.4-7.5-7.5-7.5z" stroke="#00ff41" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              GitHub
+            </span>
+            <span class="contact-value">
+              <a class="contact-link" href="https://github.com/Decodx09" target="_blank">github.com/Decodx09</a>
+            </span>
+          </div>
+          <div class="contact-method">
+            <span class="contact-label">
+              <svg style="color:#fff" width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#00ff41" stroke-width="1.2"/><circle cx="11" cy="11" r="5" stroke="#00ff41" stroke-width="1.2"/></svg>
+              Location
+            </span>
+            <span class="contact-value">Available for remote work worldwide</span>
+          </div>
+          <div class="contact-method">
+            <span class="contact-label">
+              <svg style="color:#fff" width="20" height="20" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="currentColor"/><path d="M10 3.3V10l4.7 2.5" stroke="#00ff41" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Response
+            </span>
+            <span class="contact-value">Usually within 24 hours</span>
           </div>
         </div>
       </div>
     </div>
+    <!-- RIGHT: Calendar Booking -->
+    <div class="calendar-card">
+      <div class="calendar-content">
+        <h2 class="calendar-title">Schedule a Call</h2>
+        <div class="calendar-embed">
+          <iframe src="https://cal.com/shivansh-sukhija-2itoy0/30min" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <footer class="footer">
-    <p>&copy; 2025 Shivansh Sukhija. all rights reserved.</p>
-  </footer>
-
-  <script>
-    // Enhanced contact page interactions
-    document.addEventListener('DOMContentLoaded', function() {
-      // Staggered animations
-      const contactElements = document.querySelectorAll('.contact-card, .calendar-card');
-      contactElements.forEach((element, index) => {
-        element.style.animationDelay = `${0.1 + index * 0.1}s`;
-      });
-
-      // Smooth hover effects for contact methods
-      const contactMethods = document.querySelectorAll('.contact-method');
-      contactMethods.forEach(method => {
-        method.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateX(2px)';
-        });
-        
-        method.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateX(0)';
-        });
-      });
-
-      // Cal.com embed optimization
-      const calendarIframe = document.querySelector('.calendar-embed iframe');
-      if (calendarIframe) {
-        calendarIframe.addEventListener('load', function() {
-          console.log('Calendar loaded successfully');
-        });
-      }
-    });
-  </script>
+</div>
+<footer class="footer">
+  <p>&copy; 2025 Shivansh Sukhija. All rights reserved.</p>
+</footer>
 </body>
 </html>
