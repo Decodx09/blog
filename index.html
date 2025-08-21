@@ -116,7 +116,7 @@
         /* 3D Animation Styles */
         #pipeline-animation-container {
             position: relative;
-            height: 200px;
+            height: 250px;
             width: 100%;
         }
         #pipeline-canvas {
@@ -138,7 +138,7 @@
         .pipeline-label {
             font-size: 0.75rem;
             font-weight: bold;
-            padding-bottom: 1.5rem;
+            padding-bottom: 2rem;
         }
         
         .project-link {
@@ -175,9 +175,9 @@
             border-width: 3px;
             border-color: var(--primary-color);
         }
-        #light-theme-btn { background-color: #fdfdfd; }
-        #dark-theme-btn { background-color: #1a1a1a; }
-        #reading-theme-btn { background-color: #f5eeda; }
+        #light-theme-btn, .light-theme-btn { background-color: #fdfdfd; }
+        #dark-theme-btn, .dark-theme-btn { background-color: #1a1a1a; }
+        #reading-theme-btn, .reading-theme-btn { background-color: #f5eeda; }
 
         /* General Transitions */
         header, footer {
@@ -193,6 +193,25 @@
         .text-red-600 { /* Override tailwind class */
             color: var(--primary-color) !important;
             transition: color 0.5s ease;
+        }
+
+        /* Social Icons in Footer */
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: var(--text-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
         }
     </style>
 </head>
@@ -210,7 +229,8 @@
                     <a href="#experience">Experience</a>
                     <a href="#contact">Contact</a>
                 </nav>
-                <div class="theme-switcher">
+                <!-- Theme switcher for desktop -->
+                <div class="theme-switcher hidden md:flex">
                     <button id="light-theme-btn" class="theme-button active" data-theme="light"></button>
                     <button id="dark-theme-btn" class="theme-button" data-theme="dark"></button>
                     <button id="reading-theme-btn" class="theme-button" data-theme="reading"></button>
@@ -222,20 +242,26 @@
         </header>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mb-8 text-center">
+        <div id="mobile-menu" class="hidden md:hidden mb-8 text-center space-y-4">
             <a href="#projects" class="block py-2 text-lg">Projects</a>
             <a href="#experience" class="block py-2 text-lg">Experience</a>
             <a href="#contact" class="block py-2 text-lg">Contact</a>
+            <!-- Theme switcher for mobile -->
+            <div class="theme-switcher flex justify-center pt-2">
+                <button class="theme-button light-theme-btn active" data-theme="light"></button>
+                <button class="theme-button dark-theme-btn" data-theme="dark"></button>
+                <button class="theme-button reading-theme-btn" data-theme="reading"></button>
+            </div>
         </div>
 
         <!-- Hero Section -->
         <section id="hero" class="text-center md:text-left md:flex items-center justify-between mb-20">
             <div class="md:w-2/3">
-                <h2 class="font-headline text-5xl md:text-7xl font-bold leading-tight mb-4">DON'T LET DEPLOYMENTS SLOW YOU DOWN.</h2>
+                <h2 class="font-headline text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-4">DON'T LET DEPLOYMENTS SLOW YOU DOWN.</h2>
                 <p class="text-lg mb-8">I automate infrastructure and streamline pipelines to cut your costs and get you to market faster. Let me handle the tedious tasks.</p>
                 <a href="#contact" class="retro-button">AUTOMATE NOW</a>
             </div>
-            <div class="hidden md:block md:w-1/3 p-8">
+            <div class="w-full md:w-1/3 p-4 md:p-8 mt-8 md:mt-0">
                 <!-- Three.js DevOps Pipeline Animation -->
                 <div id="pipeline-animation-container">
                     <canvas id="pipeline-canvas"></canvas>
@@ -394,7 +420,7 @@
                     <p class="font-bold mb-4">- Former Manager</p>
                     
                     <h3 class="font-headline text-3xl mb-4 mt-8">CONTACT ME</h3>
-                    <a href="https://cal.com/your-username" target="_blank" rel="noopener noreferrer" class="retro-button w-full">
+                    <a href="https://cal.com/shivansh-sukhija-2itoy0/30min" target="_blank" rel="noopener noreferrer" class="retro-button w-full">
                         Book a Call
                     </a>
                 </aside>
@@ -402,8 +428,19 @@
         </div>
 
         <!-- Footer -->
-        <footer class="text-center py-8 mt-16 border-t-4 border-black">
+        <footer class="text-center py-8 mt-16 border-t-4 border-black flex flex-col items-center">
             <p>&copy; 2025 Shivansh Sukhija. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/Decodx09" target="_blank" rel="noopener noreferrer" title="GitHub">
+                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="mailto:sukhija.shivansh@gmail.com" title="Email">
+                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                </a>
+            </div>
         </footer>
 
     </div>
@@ -442,9 +479,14 @@
                 const theme = button.dataset.theme;
                 document.body.dataset.theme = theme;
                 
-                // Update active button state
-                themeButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+                // Update active button state for all switchers
+                document.querySelectorAll('.theme-button').forEach(btn => {
+                    if (btn.dataset.theme === theme) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
 
                 // Update 3D animation colors
                 updateAnimationTheme(theme);
@@ -468,7 +510,7 @@
             camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); 
             renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(window.devicePixelRatio); // For HD display
 
             clock = new THREE.Clock();
 
@@ -495,7 +537,7 @@
             }
 
             const packetMaterial = new THREE.MeshBasicMaterial({ color: themeColors.light.packet });
-            const coreGeometry = new THREE.IcosahedronGeometry(1.5, 5); 
+            const coreGeometry = new THREE.IcosahedronGeometry(1.8, 5); // Made core larger
             const pointsMaterial = new THREE.PointsMaterial({
                 color: themeColors.light.core,
                 size: 0.07,
@@ -508,18 +550,18 @@
             core = new THREE.Points(coreGeometry, pointsMaterial);
             scene.add(core);
 
-            const packetGeometry = new THREE.SphereGeometry(0.25, 32, 32);
+            const packetGeometry = new THREE.SphereGeometry(0.3, 32, 32); // Made packet larger
             packet = new THREE.Mesh(packetGeometry, packetMaterial);
             scene.add(packet);
 
-            const orbitGeometry = new THREE.TorusGeometry(3, 0.02, 16, 100);
+            const orbitGeometry = new THREE.TorusGeometry(3.5, 0.02, 16, 100); // Made orbit larger
             const orbitMaterial = new THREE.MeshBasicMaterial({ color: themeColors.light.orbit, transparent: true, opacity: 0.3 });
             orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
             orbit.rotation.x = Math.PI / 2;
             scene.add(orbit);
 
-            camera.position.z = 6;
-            camera.position.y = 2;
+            camera.position.z = 7; // Pulled camera back
+            camera.position.y = 2.5;
             camera.lookAt(scene.position);
             
             function animate() {
@@ -527,7 +569,7 @@
                 const elapsedTime = clock.getElapsedTime();
                 core.rotation.y = elapsedTime * 0.1;
                 core.rotation.x = elapsedTime * 0.05;
-                const orbitRadius = 3.0;
+                const orbitRadius = 3.5;
                 packet.position.x = Math.cos(elapsedTime * 0.5) * orbitRadius;
                 packet.position.z = Math.sin(elapsedTime * 0.5) * orbitRadius;
                 renderer.render(scene, camera);
