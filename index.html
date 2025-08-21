@@ -11,43 +11,74 @@
     <!-- Add Three.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
+        /* --- CSS Variables for Theming --- */
+        :root {
+            --bg-color: #fdfdfd;
+            --text-color: #1a1a1a;
+            --border-color: #1a1a1a;
+            --primary-color: #e53e3e;
+            --tag-bg-color: #e2e8f0;
+            --tag-text-color: #2d3748;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #fdfdfd;
+            --border-color: #fdfdfd;
+            --primary-color: #e53e3e;
+            --tag-bg-color: #4a5568;
+            --tag-text-color: #e2e8f0;
+        }
+
+        [data-theme="reading"] {
+            --bg-color: #f5eeda;
+            --text-color: #5b4636;
+            --border-color: #5b4636;
+            --primary-color: #c05621;
+            --tag-bg-color: #d8c3a5;
+            --tag-text-color: #5b4636;
+        }
+
         body {
             font-family: 'Roboto Mono', monospace;
-            background-color: #fdfdfd;
-            color: #1a1a1a;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
-        /* All text will now use Roboto Mono */
+        
         .font-headline {
             font-family: 'Roboto Mono', monospace;
             font-weight: bold;
         }
         .retro-border {
-            border: 2px solid #1a1a1a;
+            border: 2px solid var(--border-color);
+            transition: border-color 0.5s ease;
         }
         .retro-button {
-            border: 2px solid #1a1a1a;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             padding: 10px 20px;
             text-transform: uppercase;
             font-weight: bold;
-            transition: all 0.3s ease;
-            background-color: #fdfdfd;
-            color: #1a1a1a;
+            transition: all 0.5s ease;
             text-align: center;
             display: inline-block;
         }
         .retro-button:hover {
-            background-color: #e53e3e;
+            background-color: var(--primary-color);
             color: #fdfdfd;
-            border-color: #e53e3e;
+            border-color: var(--primary-color);
         }
         
         .section-title {
             display: inline-block;
-            background-color: #e53e3e;
+            background-color: var(--primary-color);
             color: #fdfdfd;
             padding: 5px 15px;
             margin-bottom: 2rem;
             animation: ziggle 3s infinite linear;
+            transition: background-color 0.5s ease;
         }
 
         @keyframes ziggle {
@@ -67,18 +98,25 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background-color: #1a1a1a;
-            border: 3px solid #fdfdfd;
+            background-color: var(--border-color);
+            border: 3px solid var(--bg-color);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
         }
         .timeline {
             padding-left: 30px;
             margin-left: 10px;
         }
+        
+        .tag {
+            background-color: var(--tag-bg-color);
+            color: var(--tag-text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
 
         /* 3D Animation Styles */
         #pipeline-animation-container {
             position: relative;
-            height: 200px; /* Increased height for a bigger animation */
+            height: 200px;
             width: 100%;
         }
         #pipeline-canvas {
@@ -100,7 +138,7 @@
         .pipeline-label {
             font-size: 0.75rem;
             font-weight: bold;
-            padding-bottom: 1.5rem; /* Adjusted padding for new size */
+            padding-bottom: 1.5rem;
         }
         
         .project-link {
@@ -110,14 +148,55 @@
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.875rem;
-            color: #1a1a1a;
-            transition: color 0.3s ease;
+            color: var(--text-color);
+            transition: color 0.5s ease;
         }
-        .project-link:hover { color: #e53e3e; }
+        .project-link:hover { color: var(--primary-color); }
         .project-link svg { width: 1rem; height: 1rem; fill: currentColor; }
+        
+        /* Theme Toggler Styles */
+        .theme-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .theme-button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.5s ease;
+        }
+        .theme-button:hover {
+            transform: scale(1.1);
+        }
+        .theme-button.active {
+            border-width: 3px;
+            border-color: var(--primary-color);
+        }
+        #light-theme-btn { background-color: #fdfdfd; }
+        #dark-theme-btn { background-color: #1a1a1a; }
+        #reading-theme-btn { background-color: #f5eeda; }
+
+        /* General Transitions */
+        header, footer {
+            border-color: var(--border-color);
+            transition: border-color 0.5s ease;
+        }
+        a {
+            transition: color 0.5s ease;
+        }
+        a:hover {
+            color: var(--primary-color);
+        }
+        .text-red-600 { /* Override tailwind class */
+            color: var(--primary-color) !important;
+            transition: color 0.5s ease;
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
     <!-- Main Container -->
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
@@ -125,11 +204,18 @@
         <!-- Header -->
         <header class="flex justify-between items-center py-6 border-b-4 border-black mb-12">
             <h1 class="font-headline text-3xl md:text-4xl font-bold">SHIVANSH SUKHIJA</h1>
-            <nav class="hidden md:flex space-x-8 text-lg">
-                <a href="#projects" class="hover:text-red-600 transition-colors">Projects</a>
-                <a href="#experience" class="hover:text-red-600 transition-colors">Experience</a>
-                <a href="#contact" class="hover:text-red-600 transition-colors">Contact</a>
-            </nav>
+            <div class="flex items-center gap-8">
+                <nav class="hidden md:flex space-x-8 text-lg">
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="theme-switcher">
+                    <button id="light-theme-btn" class="theme-button active" data-theme="light"></button>
+                    <button id="dark-theme-btn" class="theme-button" data-theme="dark"></button>
+                    <button id="reading-theme-btn" class="theme-button" data-theme="reading"></button>
+                </div>
+            </div>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-2xl">☰</button>
             </div>
@@ -137,9 +223,9 @@
         
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mb-8 text-center">
-            <a href="#projects" class="block py-2 text-lg hover:text-red-600">Projects</a>
-            <a href="#experience" class="block py-2 text-lg hover:text-red-600">Experience</a>
-            <a href="#contact" class="block py-2 text-lg hover:text-red-600">Contact</a>
+            <a href="#projects" class="block py-2 text-lg">Projects</a>
+            <a href="#experience" class="block py-2 text-lg">Experience</a>
+            <a href="#contact" class="block py-2 text-lg">Contact</a>
         </div>
 
         <!-- Hero Section -->
@@ -179,10 +265,10 @@
                             </div>
                             <p class="mb-4">A robust service for user authentication and authorization, with JWT-based security, role-based access control, password rotation, SMTP email verification.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">SMTP Server</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">JWT</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">SMTP Server</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">JWT</span>
                             </div>
                             <a href="https://github.com/Decodx09/SAuth" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -197,11 +283,11 @@
                             </div>
                             <p class="mb-4">General AWS Scalable, Secure, Robust Architecture.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">AWS</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">VPC</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Subnets</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Route Tables</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Security Groups</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">AWS</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">VPC</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Subnets</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Route Tables</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Security Groups</span>
                             </div>
                             <a href="https://github.com/Decodx09/single-az-architecture" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -216,8 +302,8 @@
                             </div>
                             <p class="mb-4">Computer Science Fundamentals.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Fundamentals</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Protocols</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Fundamentals</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Protocols</span>
                             </div>
                             <a href="https://docs.google.com/document/d/1KT_EKF7dQZzvD0C8IgfjLsdwMuVkKQO0DUgHTOrFSx0/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -232,9 +318,9 @@
                             </div>
                             <p class="mb-4">Optimized Deployment with Kubernetes for Performance and Scalability.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Performance</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Deployment</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Scalability</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Performance</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Deployment</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Scalability</span>
                             </div>
                              <a href="https://github.com/Decodx09/k8s" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -249,9 +335,9 @@
                             </div>
                             <p class="mb-4">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Kafka</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Kafka</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
                             </div>
                             <a href="https://github.com/Decodx09/Efficient-Database" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -266,8 +352,8 @@
                             </div>
                             <p class="mb-4">Working on it.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
-                                <span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
+                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
                             </div>
                             <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
                                 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -288,12 +374,12 @@
                         </div>
                         <div class="mb-8 relative timeline-item">
                             <h4 class="font-bold text-xl">DevOps Intern</h4>
-                            <p class="text-red-600 font-semibold mb-1">GlobalLogic - Hitachi | 5 Months</p>
+                            <p class="text-red-600 font-semibold mb-1">GlobalLogic - Hitachi | Apr 2023 - Aug 2023</p>
                             <p>Automated AWS infrastructure with Terraform, reducing manual intervention by 80%. Managed Jenkins CI/CD pipelines to enhance release reliability and streamlined deployments with Ansible playbooks, cutting configuration errors by 40%.</p>
                         </div>
                          <div class="relative timeline-item">
                             <h4 class="font-bold text-xl">Backend Engineer Intern</h4>
-                            <p class="text-red-600 font-semibold mb-1">Blueteak | 4 Months</p>
+                            <p class="text-red-600 font-semibold mb-1">Blueteak | Dec 2022 - Mar 2023</p>
                             <p>Contributed to the development of server-side logic, defined and maintained the central database, and ensured high performance and responsiveness to API requests.</p>
                         </div>
                     </div>
@@ -304,8 +390,8 @@
             <div class="md:col-span-1">
                 <aside id="contact" class="retro-border p-6 sticky top-8">
                     <h3 class="font-headline text-3xl mb-4">THE HEADLINES</h3>
-                    <p class="mb-6 italic">"Shivansh's automation scripts gave me back 6 hours each week that I used to spend on manual deployments. His work is robust and constantly improving."</p>
-                    <p class="font-bold mb-4">- Satisfied Client</p>
+                    <p class="mb-6 italic">"Shivansh's expertise in shell scripting was a game-changer. He single-handedly automated our entire infrastructure setup, turning complex deployments into a single, reliable command. His scripts are clean, efficient, and have become the backbone of our operations."</p>
+                    <p class="font-bold mb-4">- Former Manager</p>
                     
                     <h3 class="font-headline text-3xl mb-4 mt-8">CONTACT ME</h3>
                     <a href="https://cal.com/your-username" target="_blank" rel="noopener noreferrer" class="retro-button w-full">
@@ -341,20 +427,51 @@
             });
         });
 
+        // --- Three.js Scene Global Variables ---
+        let scene, camera, renderer, clock, core, packet, orbit;
+        const themeColors = {
+            light: { core: 0x1a1a1a, packet: 0xe53e3e, orbit: 0x1a1a1a },
+            dark: { core: 0xfdfdfd, packet: 0xe53e3e, orbit: 0xfdfdfd },
+            reading: { core: 0x5b4636, packet: 0xc05621, orbit: 0x5b4636 }
+        };
+
+        // --- Theme Toggler ---
+        const themeButtons = document.querySelectorAll('.theme-button');
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.dataset.theme;
+                document.body.dataset.theme = theme;
+                
+                // Update active button state
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update 3D animation colors
+                updateAnimationTheme(theme);
+            });
+        });
+
+        function updateAnimationTheme(theme) {
+            if (core && packet && orbit) {
+                core.material.color.setHex(themeColors[theme].core);
+                packet.material.color.setHex(themeColors[theme].packet);
+                orbit.material.color.setHex(themeColors[theme].orbit);
+            }
+        }
+
         // --- Three.js Pipeline Animation ---
         if (typeof THREE !== 'undefined') {
             const container = document.getElementById('pipeline-animation-container');
             const canvas = document.getElementById('pipeline-canvas');
 
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); 
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); 
             renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
 
-            const clock = new THREE.Clock();
+            clock = new THREE.Clock();
 
-            // --- Function to create a glowing sprite texture ---
             function createGlowTexture() {
                 const canvas = document.createElement('canvas');
                 canvas.width = 128;
@@ -377,54 +494,42 @@
                 return new THREE.CanvasTexture(canvas);
             }
 
-            // --- Dotted Core and Smooth Shapes ---
-            const packetMaterial = new THREE.MeshBasicMaterial({ color: 0xe53e3e });
-
-            // Create a denser, more detailed sphere of dots
+            const packetMaterial = new THREE.MeshBasicMaterial({ color: themeColors.light.packet });
             const coreGeometry = new THREE.IcosahedronGeometry(1.5, 5); 
             const pointsMaterial = new THREE.PointsMaterial({
-                color: 0x1a1a1a,
+                color: themeColors.light.core,
                 size: 0.07,
                 sizeAttenuation: true,
-                map: createGlowTexture(), // Apply the shiny texture
-                blending: THREE.AdditiveBlending, // Makes points glow when overlapping
-                depthWrite: false, // Prevents points from hiding objects behind them
+                map: createGlowTexture(),
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
                 transparent: true
             });
-            const core = new THREE.Points(coreGeometry, pointsMaterial);
+            core = new THREE.Points(coreGeometry, pointsMaterial);
             scene.add(core);
 
-            // The revolving "red ball"
             const packetGeometry = new THREE.SphereGeometry(0.25, 32, 32);
-            const packet = new THREE.Mesh(packetGeometry, packetMaterial);
+            packet = new THREE.Mesh(packetGeometry, packetMaterial);
             scene.add(packet);
 
-            // An orbit path for visual reference
             const orbitGeometry = new THREE.TorusGeometry(3, 0.02, 16, 100);
-            const orbitMaterial = new THREE.MeshBasicMaterial({ color: 0x1a1a1a, transparent: true, opacity: 0.3 });
-            const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
-            orbit.rotation.x = Math.PI / 2; // Rotate the ring to be flat
+            const orbitMaterial = new THREE.MeshBasicMaterial({ color: themeColors.light.orbit, transparent: true, opacity: 0.3 });
+            orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
+            orbit.rotation.x = Math.PI / 2;
             scene.add(orbit);
 
             camera.position.z = 6;
             camera.position.y = 2;
             camera.lookAt(scene.position);
             
-            // --- Revolving Animation Loop ---
             function animate() {
                 requestAnimationFrame(animate);
-
                 const elapsedTime = clock.getElapsedTime();
-
-                // Slowly rotate the central core
                 core.rotation.y = elapsedTime * 0.1;
                 core.rotation.x = elapsedTime * 0.05;
-
-                // Make the packet revolve in a circle smoothly
                 const orbitRadius = 3.0;
                 packet.position.x = Math.cos(elapsedTime * 0.5) * orbitRadius;
                 packet.position.z = Math.sin(elapsedTime * 0.5) * orbitRadius;
-
                 renderer.render(scene, camera);
             }
             
