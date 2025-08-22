@@ -19,6 +19,7 @@
             --primary-color: #e53e3e;
             --tag-bg-color: #e2e8f0;
             --tag-text-color: #2d3748;
+            --switcher-bg: rgba(0, 0, 0, 0.1);
         }
 
         [data-theme="dark"] {
@@ -28,15 +29,17 @@
             --primary-color: #e53e3e;
             --tag-bg-color: #4a5568;
             --tag-text-color: #e2e8f0;
+            --switcher-bg: rgba(255, 255, 255, 0.1);
         }
 
-        [data-theme="reading"] {
-            --bg-color: #f5eeda;
-            --text-color: #5b4636;
-            --border-color: #5b4636;
-            --primary-color: #c05621;
-            --tag-bg-color: #d8c3a5;
-            --tag-text-color: #5b4636;
+        [data-theme="blue"] {
+            --bg-color: #0a192f;
+            --text-color: #ccd6f6;
+            --border-color: #64ffda;
+            --primary-color: #64ffda;
+            --tag-bg-color: #112240;
+            --tag-text-color: #8892b0;
+            --switcher-bg: rgba(100, 255, 218, 0.1);
         }
 
         body {
@@ -154,30 +157,47 @@
         .project-link:hover { color: var(--primary-color); }
         .project-link svg { width: 1rem; height: 1rem; fill: currentColor; }
         
-        /* Theme Toggler Styles */
+        /* Stylish Theme Toggler */
         .theme-switcher {
+            position: relative;
             display: flex;
-            gap: 0.5rem;
             align-items: center;
+            background-color: var(--switcher-bg);
+            border-radius: 9999px;
+            padding: 4px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.5s ease, background-color 0.5s ease;
         }
-        .theme-button {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+        .theme-icon {
+            width: 28px;
+            height: 28px;
             cursor: pointer;
-            border: 2px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.5s ease;
+            z-index: 10;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
         }
-        .theme-button:hover {
-            transform: scale(1.1);
+        .theme-icon svg {
+            width: 18px;
+            height: 18px;
+            transition: color 0.4s ease;
         }
-        .theme-button.active {
-            border-width: 3px;
-            border-color: var(--primary-color);
+        .theme-icon.active svg {
+            color: var(--bg-color);
         }
-        #light-theme-btn, .light-theme-btn { background-color: #fdfdfd; }
-        #dark-theme-btn, .dark-theme-btn { background-color: #1a1a1a; }
-        #reading-theme-btn, .reading-theme-btn { background-color: #f5eeda; }
+        .theme-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.5s ease;
+            z-index: 5;
+        }
 
         /* General Transitions */
         header, footer {
@@ -215,25 +235,32 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <!-- Main Container -->
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
         <!-- Header -->
         <header class="flex justify-between items-center py-6 border-b-4 border-black mb-12">
-            <h1 class="font-headline text-3xl md:text-4xl font-bold">SHIVANSH SUKHIJA</h1>
+            <h1 class="font-headline text-2xl md:text-4xl font-bold">SHIVANSH SUKHIJA</h1>
             <div class="flex items-center gap-8">
-                <nav class="hidden md:flex space-x-8 text-lg">
+                <nav class="hidden md:flex space-x-8 text-base md:text-lg">
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
                 </nav>
                 <!-- Theme switcher for desktop -->
                 <div class="theme-switcher hidden md:flex">
-                    <button id="light-theme-btn" class="theme-button active" data-theme="light"></button>
-                    <button id="dark-theme-btn" class="theme-button" data-theme="dark"></button>
-                    <button id="reading-theme-btn" class="theme-button" data-theme="reading"></button>
+                    <div class="theme-slider"></div>
+                    <div class="theme-icon active" data-theme="light" data-index="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    </div>
+                    <div class="theme-icon" data-theme="dark" data-index="1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                    </div>
+                    <div class="theme-icon" data-theme="blue" data-index="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 18l-.648 2.562a4.5 4.5 0 01-2.356 2.356L10.5 21.75l2.563.648a4.5 4.5 0 012.356 2.356L16.25 25.5l.648-2.562a4.5 4.5 0 012.356-2.356L21.75 18l-2.563-.648a4.5 4.5 0 01-2.356-2.356z" /></svg>
+                    </div>
                 </div>
             </div>
             <div class="md:hidden">
@@ -247,18 +274,27 @@
             <a href="#projects" class="block py-2 text-lg">Projects</a>
             <a href="#contact" class="block py-2 text-lg">Contact</a>
             <!-- Theme switcher for mobile -->
-            <div class="theme-switcher flex justify-center pt-2">
-                <button class="theme-button light-theme-btn active" data-theme="light"></button>
-                <button class="theme-button dark-theme-btn" data-theme="dark"></button>
-                <button class="theme-button reading-theme-btn" data-theme="reading"></button>
+            <div class="flex justify-center pt-2">
+                <div class="theme-switcher">
+                    <div class="theme-slider"></div>
+                    <div class="theme-icon active" data-theme="light" data-index="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    </div>
+                    <div class="theme-icon" data-theme="dark" data-index="1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                    </div>
+                    <div class="theme-icon" data-theme="blue" data-index="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 18l-.648 2.562a4.5 4.5 0 01-2.356 2.356L10.5 21.75l2.563.648a4.5 4.5 0 012.356 2.356L16.25 25.5l.648-2.562a4.5 4.5 0 012.356-2.356L21.75 18l-2.563-.648a4.5 4.5 0 01-2.356-2.356z" /></svg>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Hero Section -->
         <section id="hero" class="text-center md:text-left md:flex items-center justify-between mb-20">
             <div class="md:w-2/3">
-                <h2 class="font-headline text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-4">DON'T LET DEPLOYMENTS SLOW YOU DOWN.</h2>
-                <p class="text-lg mb-8">I automate infrastructure and streamline pipelines to cut your costs and get you to market faster. Let me handle the tedious tasks.</p>
+                <h2 class="font-headline text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">DON'T LET DEPLOYMENTS SLOW YOU DOWN.</h2>
+                <p class="text-base md:text-lg mb-8">I automate infrastructure and streamline pipelines to cut your costs and get you to market faster. Let me handle the tedious tasks.</p>
                 <a href="#contact" class="retro-button">AUTOMATE NOW</a>
             </div>
             <div class="w-full md:w-1/3 p-4 md:p-8 mt-8 md:mt-0">
@@ -282,37 +318,37 @@
 
                 <!-- Experience Section -->
                 <section id="experience" class="mb-16">
-                    <h3 class="font-headline text-4xl section-title">EXPERIENCE</h3>
+                    <h3 class="font-headline text-3xl md:text-4xl section-title">EXPERIENCE</h3>
                     <div class="relative timeline">
                         <div class="mb-8 relative timeline-item">
-                            <h4 class="font-bold text-xl">Software Engineer</h4>
+                            <h4 class="font-bold text-lg md:text-xl">Software Engineer</h4>
                             <p class="text-red-600 font-semibold mb-1">GlobalLogic | Sept 2023 - Present</p>
-                            <p>Architected secure VPC networking with Transit Gateways and standardized IaC using Terraform, reducing environment drift by 75%. Increased application scalability by 40% with Kubernetes/ECS orchestration and cut AWS costs by 30% through strategic resource optimization.</p>
+                            <p class="text-base">Architected secure VPC networking with Transit Gateways and standardized IaC using Terraform, reducing environment drift by 75%. Increased application scalability by 40% with Kubernetes/ECS orchestration and cut AWS costs by 30% through strategic resource optimization.</p>
                         </div>
                         <div class="mb-8 relative timeline-item">
-                            <h4 class="font-bold text-xl">DevOps Intern</h4>
+                            <h4 class="font-bold text-lg md:text-xl">DevOps Intern</h4>
                             <p class="text-red-600 font-semibold mb-1">GlobalLogic - Hitachi | Apr 2023 - Aug 2023</p>
-                            <p>Automated AWS infrastructure with Terraform, reducing manual intervention by 80%. Managed Jenkins CI/CD pipelines to enhance release reliability and streamlined deployments with Ansible playbooks, cutting configuration errors by 40%.</p>
+                            <p class="text-base">Automated AWS infrastructure with Terraform, reducing manual intervention by 80%. Managed Jenkins CI/CD pipelines to enhance release reliability and streamlined deployments with Ansible playbooks, cutting configuration errors by 40%.</p>
                         </div>
                          <div class="relative timeline-item">
-                            <h4 class="font-bold text-xl">Backend Engineer Intern</h4>
+                            <h4 class="font-bold text-lg md:text-xl">Backend Engineer Intern</h4>
                             <p class="text-red-600 font-semibold mb-1">Blueteak | Dec 2022 - Mar 2023</p>
-                            <p>Contributed to the development of server-side logic, defined and maintained the central database, and ensured high performance and responsiveness to API requests.</p>
+                            <p class="text-base">Contributed to the development of server-side logic, defined and maintained the central database, and ensured high performance and responsiveness to API requests.</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Projects Section -->
                 <section id="projects">
-                    <h3 class="font-headline text-4xl section-title">PROJECTS</h3>
+                    <h3 class="font-headline text-3xl md:text-4xl section-title">PROJECTS</h3>
                     <div class="space-y-8">
                         <!-- Project 1: SAuth -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">SAuth</h4>
-                                <span class="text-sm text-gray-500 font-semibold">Authentication & Authorization Service</span>
+                                <h4 class="font-bold text-lg md:text-xl">SAuth</h4>
+                                <span class="text-sm text-gray-500 font-semibold">Authentication Service</span>
                             </div>
-                            <p class="mb-4">A robust service for user authentication and authorization, with JWT-based security, role-based access control, password rotation, SMTP email verification.</p>
+                            <p class="mb-4 text-base">A robust service for user authentication and authorization, with JWT-based security, role-based access control, password rotation, SMTP email verification.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
@@ -327,10 +363,10 @@
                         <!-- Project 2: Single AZ Architecture -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">Single Available Zone Architecture</h4>
+                                <h4 class="font-bold text-lg md:text-xl">Single Available Zone Architecture</h4>
                                 <span class="text-sm text-gray-500 font-semibold">Infrastructure</span>
                             </div>
-                            <p class="mb-4">General AWS Scalable, Secure, Robust Architecture.</p>
+                            <p class="mb-4 text-base">General AWS Scalable, Secure, Robust Architecture.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">AWS</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">VPC</span>
@@ -346,10 +382,10 @@
                         <!-- Project 3: Computer Networks -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">Computer Networks</h4>
+                                <h4 class="font-bold text-lg md:text-xl">Computer Networks</h4>
                                 <span class="text-sm text-gray-500 font-semibold">CS Notes</span>
                             </div>
-                            <p class="mb-4">Computer Science Fundamentals.</p>
+                            <p class="mb-4 text-base">Computer Science Fundamentals.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Fundamentals</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Protocols</span>
@@ -362,10 +398,10 @@
                         <!-- Project 4: Kubernetes Deployment -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">Kubernetes Deployment</h4>
+                                <h4 class="font-bold text-lg md:text-xl">Kubernetes Deployment</h4>
                                 <span class="text-sm text-gray-500 font-semibold">Deployment</span>
                             </div>
-                            <p class="mb-4">Optimized Deployment with Kubernetes for Performance and Scalability.</p>
+                            <p class="mb-4 text-base">Optimized Deployment with Kubernetes for Performance and Scalability.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Performance</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Deployment</span>
@@ -379,10 +415,10 @@
                         <!-- Project 5: Efficient-Database -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">Efficient-Database</h4>
+                                <h4 class="font-bold text-lg md:text-xl">Efficient-Database</h4>
                                 <span class="text-sm text-gray-500 font-semibold">Database Service</span>
                             </div>
-                            <p class="mb-4">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
+                            <p class="mb-4 text-base">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Kafka</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
@@ -396,10 +432,10 @@
                          <!-- Project 6: Seature Slag -->
                         <div class="retro-border p-6">
                             <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-xl">Seature Slag</h4>
+                                <h4 class="font-bold text-lg md:text-xl">Seature Slag</h4>
                                 <span class="text-sm text-gray-500 font-semibold">Feature Flag Service</span>
                             </div>
-                            <p class="mb-4">Working on it.</p>
+                            <p class="mb-4 text-base">Working on it.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
                                 <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
@@ -416,11 +452,11 @@
             <!-- Right Column: Contact -->
             <div class="md:col-span-1">
                 <aside id="contact" class="retro-border p-6 sticky top-8">
-                    <h3 class="font-headline text-3xl mb-4">THE HEADLINES</h3>
-                    <p class="mb-6 italic">"Shivansh's expertise in shell scripting was a game-changer. He single-handedly automated our entire infrastructure setup, turning complex deployments into a single, reliable command. His scripts are clean, efficient, and have become the backbone of our operations."</p>
+                    <h3 class="font-headline text-2xl md:text-3xl mb-4">THE HEADLINES</h3>
+                    <p class="mb-6 italic text-base">"Shivansh's expertise in shell scripting was a game-changer. He single-handedly automated our entire infrastructure setup, turning complex deployments into a single, reliable command. His scripts are clean, efficient, and have become the backbone of our operations."</p>
                     <p class="font-bold mb-4">- Former Manager</p>
                     
-                    <h3 class="font-headline text-3xl mb-4 mt-8">CONTACT ME</h3>
+                    <h3 class="font-headline text-2xl md:text-3xl mb-4 mt-8">CONTACT ME</h3>
                     <a href="https://cal.com/your-username" target="_blank" rel="noopener noreferrer" class="retro-button w-full">
                         Book a Call
                     </a>
@@ -470,29 +506,36 @@
         const themeColors = {
             light: { core: 0x1a1a1a, packet: 0xe53e3e, orbit: 0x1a1a1a },
             dark: { core: 0xfdfdfd, packet: 0xe53e3e, orbit: 0xfdfdfd },
-            reading: { core: 0x5b4636, packet: 0xc05621, orbit: 0x5b4636 }
+            blue: { core: 0x64ffda, packet: 0x64ffda, orbit: 0xccd6f6 }
         };
 
         // --- Theme Toggler ---
-        const themeButtons = document.querySelectorAll('.theme-button');
-        themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.dataset.theme;
-                document.body.dataset.theme = theme;
-                
-                // Update active button state for all switchers
-                document.querySelectorAll('.theme-button').forEach(btn => {
-                    if (btn.dataset.theme === theme) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
+        const themeSwitchers = document.querySelectorAll('.theme-switcher');
+        themeSwitchers.forEach(switcher => {
+            const themeIcons = switcher.querySelectorAll('.theme-icon');
+            const slider = switcher.querySelector('.theme-slider');
 
-                // Update 3D animation colors
-                updateAnimationTheme(theme);
+            themeIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const theme = icon.dataset.theme;
+                    const index = parseInt(icon.dataset.index);
+                    document.body.dataset.theme = theme;
+                    
+                    // Move the slider
+                    slider.style.transform = `translateX(${index * 100}%)`;
+
+                    // Update active state for all switchers
+                    document.querySelectorAll('.theme-switcher').forEach(s => {
+                        s.querySelectorAll('.theme-icon').forEach(i => i.classList.remove('active'));
+                        s.querySelector(`.theme-icon[data-theme="${theme}"]`).classList.add('active');
+                        s.querySelector('.theme-slider').style.transform = `translateX(${index * 100}%)`;
+                    });
+
+                    updateAnimationTheme(theme);
+                });
             });
         });
+
 
         function updateAnimationTheme(theme) {
             if (core && packet && orbit) {
