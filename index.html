@@ -190,7 +190,7 @@
             transition: color 0.5s ease;
         }
 
-        /* Social Icons in Footer */
+        /* Social Icons */
         .social-icons {
             display: flex;
             gap: 1.5rem;
@@ -208,27 +208,33 @@
             width: 24px;
             height: 24px;
         }
-
-        /* Dotted Background for Hero */
-        #hero {
-            position: relative;
-            overflow: hidden; /* Ensures pseudo-element stays within bounds */
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(var(--text-color) 0.5px, transparent 0.5px);
-            background-size: 15px 15px;
-            opacity: 0.1;
-            z-index: -1;
-            transition: opacity 0.5s ease;
+        .contact-socials a {
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0; /* Prevents icons from squishing */
         }
-        [data-theme="dark"] #hero::before {
-            opacity: 0.05;
+        .contact-socials a:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fdfdfd;
+            transform: translateY(-4px);
+        }
+         .contact-socials svg {
+            width: 28px;
+            height: 28px;
         }
     </style>
 </head>
@@ -240,8 +246,8 @@
         <!-- Header -->
         <header class="flex justify-between items-center py-6 border-b-4 border-black mb-12">
             <h1 class="font-headline text-2xl md:text-4xl font-bold">SHIVANSH SUKHIJA</h1>
-            <div class="flex items-center gap-8">
-                <nav class="hidden md:flex space-x-8 text-base md:text-lg">
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex space-x-6 text-base md:text-lg">
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
@@ -308,7 +314,7 @@
                         </div>
                         <div class="mb-8 relative timeline-item">
                             <h4 class="font-bold text-lg md:text-xl">DevOps Intern</h4>
-                            <p class="text-red-600 font-semibold mb-1">GlobalLogic | Apr 2023 - Aug 2023</p>
+                            <p class="text-red-600 font-semibold mb-1">GlobalLogic - Hitachi | Apr 2023 - Aug 2023</p>
                             <p class="text-base">Automated AWS infrastructure with Terraform, reducing manual intervention by 80%. Managed Jenkins CI/CD pipelines to enhance release reliability and streamlined deployments with Ansible playbooks, cutting configuration errors by 40%.</p>
                         </div>
                          <div class="relative timeline-item">
@@ -393,63 +399,29 @@
                                 GitHub
                             </a>
                         </div>
-                        <!-- Project 5: Efficient-Database -->
-                        <div class="retro-border p-6">
-                            <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-lg md:text-xl">Efficient-Database</h4>
-                                <span class="text-sm text-gray-500 font-semibold">Database Service</span>
-                            </div>
-                            <p class="mb-4 text-base">A robust RESTful API for user authentication and authorization, featuring JWT-based security, password hashing, role-based access control, and comprehensive test coverage.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Kafka</span>
-                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
-                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
-                            </div>
-                            <a href="https://github.com/Decodx09/Efficient-Database" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                                GitHub
-                            </a>
-                        </div>
-                         <!-- Project 6: Seature Slag -->
-                        <div class="retro-border p-6">
-                            <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-bold text-lg md:text-xl">Seature Slag</h4>
-                                <span class="text-sm text-gray-500 font-semibold">Feature Flag Service</span>
-                            </div>
-                            <p class="mb-4 text-base">Working on it.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Node.js</span>
-                                <span class="tag text-sm font-medium mr-2 px-2.5 py-0.5 rounded">MySQL</span>
-                            </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                                GitHub
-                            </a>
-                        </div>
                     </div>
                 </section>
             </div>
 
-            <!-- Right Column: Contact -->
+            <!-- Right Column: Testimonial -->
             <div class="md:col-span-1">
-                <aside id="contact" class="retro-border p-6 sticky top-8">
-                    <h3 class="font-headline text-2xl md:text-3xl mb-4">THE HEADLINES</h3>
+                <aside class="retro-border p-6 sticky top-8">
+                    <h3 class="font-headline text-2xl md:text-3xl mb-4">TESTIMONIALS</h3>
                     <p class="mb-6 italic text-base">"Shivansh's expertise in shell scripting was a game-changer. He single-handedly automated our entire infrastructure setup, turning complex deployments into a single, reliable command. His scripts are clean, efficient, and have become the backbone of our operations."</p>
                     <p class="font-bold mb-4">- Former Manager</p>
-                    
-                    <h3 class="font-headline text-2xl md:text-3xl mb-4 mt-8">CONTACT ME</h3>
-                    <a href="https://cal.com/shivansh-sukhija-2itoy0/30min" target="_blank" rel="noopener noreferrer" class="retro-button w-full">
-                        Book a Call
-                    </a>
                 </aside>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="text-center py-8 mt-16 border-t-4 border-black flex flex-col items-center">
-            <p>&copy; 2025 Shivansh Sukhija. All Rights Reserved.</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        
+        <!-- Contact Section -->
+        <section id="contact" class="mt-16 text-center">
+             <h3 class="font-headline text-3xl md:text-4xl section-title">GET IN TOUCH</h3>
+             <p class="text-base md:text-lg mb-8 max-w-xl mx-auto">I'm always open to discussing new projects and opportunities. Feel free to reach out or schedule a call.</p>
+             <a href="https://cal.com/shivansh-sukhija-2itoy0/30min" target="_blank" rel="noopener noreferrer" class="retro-button mb-8">
+                Book a Call
+            </a>
+             <div class="contact-socials">
+                 <a href="https://www.linkedin.com/in/shivansh-sukhija-5a5b56105/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
                 </a>
                 <a href="https://github.com/Decodx09" target="_blank" rel="noopener noreferrer" title="GitHub">
@@ -462,6 +434,11 @@
                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
                 </a>
             </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 mt-16 border-t-4 border-black flex flex-col items-center">
+            <p>&copy; 2025 Shivansh Sukhija. All Rights Reserved.</p>
         </footer>
 
     </div>
