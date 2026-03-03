@@ -777,28 +777,71 @@ h6 {
         position: relative;
     }
 
+    .header {
+        backdrop-filter: none;
+        /* iOS Safari fix for fixed descendents */
+        background: rgba(5, 5, 5, 0.98);
+        /* Fallback opacity to stay solid */
+    }
+
     .nav-list {
         position: fixed;
         background: #000;
         top: 0;
-        right: -100%;
-        width: 100%;
+        left: 0;
+        width: 100vw;
         height: 100vh;
+        height: 100dvh;
+        /* modern mobile viewport handling */
         flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 1001;
-        transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateX(100%);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        /* Ensure flex isn't lost */
         gap: 3rem;
+        pointer-events: none;
+        /* Block accidental clicks when hidden */
     }
 
     .nav-list .nav-link {
         font-size: 1.5rem;
-        opacity: 0.9;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .nav-list.active {
-        right: 0;
+        transform: translateX(0);
+        pointer-events: all;
+    }
+
+    .nav-list.active .nav-link {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+
+    /* Reveal delays for links */
+    .nav-list.active li:nth-child(1) .nav-link {
+        transition-delay: 0.2s;
+    }
+
+    .nav-list.active li:nth-child(2) .nav-link {
+        transition-delay: 0.3s;
+    }
+
+    .nav-list.active li:nth-child(3) .nav-link {
+        transition-delay: 0.4s;
+    }
+
+    .nav-list.active li:nth-child(4) .nav-link {
+        transition-delay: 0.5s;
+    }
+
+    .nav-list.active li:nth-child(5) .nav-link {
+        transition-delay: 0.6s;
     }
 
     .product-card {
