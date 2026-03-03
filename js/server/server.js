@@ -51,6 +51,12 @@ app.post('/send-email', async (req, res) => {
     // Also send an auto-reply if possible? No, user just wants to receive it.
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Start server locally
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;

@@ -107,12 +107,41 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(styleSheet);
 
-    // Contact Form Submission (Using simple mailto for now)
-    // The form in index.html will handle the mailto: action directly.
-    /*
+    // Contact Form Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-       ... removed fetch logic ...
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, message })
+                });
+
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    alert('Failed to send message.');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert('An error occurred. Please try again later.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
     }
-    */
 });
