@@ -127,16 +127,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Message sent successfully!');
+                    btn.textContent = 'Sent!';
                     contactForm.reset();
+                    setTimeout(() => { btn.textContent = originalText; }, 3000);
                 } else {
-                    alert('Failed to send message.');
+                    btn.textContent = 'Failed — Try Again';
+                    setTimeout(() => { btn.textContent = originalText; }, 3000);
                 }
             } catch (error) {
                 console.error('Error sending message:', error);
-                alert('An error occurred. Please try again later.');
+                btn.textContent = 'Failed — Try Again';
+                setTimeout(() => { btn.textContent = originalText; }, 3000);
             } finally {
-                btn.textContent = originalText;
                 btn.disabled = false;
             }
         });
