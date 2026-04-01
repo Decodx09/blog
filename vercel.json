@@ -3,5 +3,8 @@
   "builds": [
     { "src": "api/send-email.js", "use": "@vercel/node" },
     { "src": "**", "use": "@vercel/static" }
+  ],
+  "rewrites": [
+    { "source": "/api/send-email", "destination": "/api/send-email.js" }
   ]
 }
