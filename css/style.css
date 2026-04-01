@@ -45,8 +45,37 @@ body {
     font-family: var(--font-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: default;
-    /* Custom cursor */
+}
+
+/* Custom Cursor */
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-primary);
+}
+
+.cursor-outline {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@media (hover: none) {
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
 }
 
 /* Film Grain Overlay */
@@ -770,11 +799,15 @@ h6 {
         padding: 0 1.5rem;
     }
 
+    .section {
+        padding: 6rem 0;
+    }
+
     .hamburger {
         display: block;
         z-index: 2001;
-        /* Ensure above header/grain */
         position: relative;
+        touch-action: manipulation;
     }
 
     .header {
@@ -865,6 +898,14 @@ h6 {
     .footer-container {
         flex-direction: column;
         gap: 4rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
     }
 
     .footer-col {
