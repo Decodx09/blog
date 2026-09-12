@@ -53,18 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorOutline = document.querySelector('[data-cursor-outline]');
 
     if (cursorDot && cursorOutline && window.matchMedia('(hover: hover)').matches) {
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+
         window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            // Dot follows instantly (compositor-only transform)
+            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }, { passive: true });
 
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
+        // Outline trails via a single rAF loop instead of spawning an animation per move
+        (function trailCursor() {
+            outlineX += (mouseX - outlineX) * 0.18;
+            outlineY += (mouseY - outlineY) * 0.18;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(trailCursor);
+        })();
     }
 
     // Reveal on Scroll

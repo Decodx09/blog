@@ -402,6 +402,11 @@ h6 {
     z-index: 1;
     pointer-events: none;
     isolation: isolate;
+    /* Cache the expensive filtered scene as its own GPU layer so scrolling
+       composites a texture instead of re-running the SVG filter */
+    transform: translateZ(0);
+    will-change: transform;
+    contain: strict;
 }
 
 .visual-lighting {
@@ -427,7 +432,7 @@ h6 {
     width: 78%;
     height: 82%;
     background: radial-gradient(ellipse at 58% 44%, rgba(255, 255, 247, 0.52) 0%, rgba(255, 249, 235, 0.34) 24%, rgba(255, 241, 221, 0.18) 44%, rgba(255, 232, 214, 0.08) 60%, transparent 80%);
-    filter: blur(70px);
+    filter: blur(48px);
     transform: scale(1.13);
 }
 
@@ -477,7 +482,7 @@ h6 {
     width: 47%;
     height: 31%;
     background: radial-gradient(ellipse at 52% 34%, rgba(255, 246, 236, 0.3) 0%, rgba(255, 237, 226, 0.16) 34%, rgba(255, 226, 215, 0.08) 58%, transparent 80%);
-    filter: blur(54px);
+    filter: blur(40px);
     transform: scale(1.18);
 }
 
