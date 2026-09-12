@@ -715,6 +715,8 @@ h6 {
 .contact-text {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding-right: 0;
 }
 
@@ -726,16 +728,22 @@ h6 {
     font-weight: 300;
 }
 
+.contact.first-section {
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-bottom: 4rem;
+}
+
 .contact .section-title {
     font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 .contact-actions {
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 2rem;
+    width: 100%;
 }
 
 .cal-inline {
@@ -743,6 +751,19 @@ h6 {
     max-width: 900px;
     min-height: 600px;
     overflow: auto;
+    position: relative;
+}
+
+/* Mask the Cal.com branding strip at the bottom of the embed */
+.cal-inline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 31px;
+    height: 60px;
+    background: var(--bg-color);
+    pointer-events: none;
 }
 
 .contact-form-wrapper {
