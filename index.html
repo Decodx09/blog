@@ -60,14 +60,11 @@
                         <path id="mainBubblePath" d="M -450 -120 H 1550 V 970 H -450 Z" />
                         <clipPath id="mainBubbleClip"><use href="#mainBubblePath" /></clipPath>
 
-                        <filter id="mainLiquidFilter" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-                            <feTurbulence type="fractalNoise" baseFrequency=".008 .010" numOctaves="2" seed="92" result="noise">
-                                <animate attributeName="baseFrequency" dur="10s" repeatCount="indefinite" values=".008 .010; .010 .008; .007 .012; .008 .010" />
-                            </feTurbulence>
+                        <!-- Static glass distortion: computed once, cached by the browser (no per-frame cost) -->
+                        <filter id="mainLiquidFilter" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+                            <feTurbulence type="fractalNoise" baseFrequency=".008 .010" numOctaves="1" seed="92" result="noise" />
                             <feGaussianBlur in="noise" stdDeviation="1.35" result="blurredNoise" />
-                            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="86" xChannelSelector="R" yChannelSelector="G">
-                                <animate attributeName="scale" dur="8s" repeatCount="indefinite" values="78; 94; 84; 90; 78" />
-                            </feDisplacementMap>
+                            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="34" xChannelSelector="R" yChannelSelector="G" />
                             <feColorMatrix type="matrix" values="1.02 0 0 0 0.010  0 1.01 0 0 0.008  0 0 .96 0 -0.002  0 0 0 1 0" />
                         </filter>
 
@@ -122,10 +119,6 @@
                             <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
                         </radialGradient>
                     </defs>
-
-                    <!-- full-frame base image so the scene fills edge to edge -->
-                    <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="-120" y="-120" width="1340" height="1090" preserveAspectRatio="xMidYMid slice" />
-                    <rect x="0" y="0" width="1100" height="850" fill="#050505" opacity="0.32" />
 
                     <g id="mainParallax">
                         <g>

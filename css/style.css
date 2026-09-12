@@ -439,6 +439,7 @@ h6 {
     background: radial-gradient(ellipse at 51% 42%, rgba(255, 255, 250, 0.98) 0%, rgba(255, 255, 244, 0.88) 15%, rgba(255, 248, 232, 0.6) 34%, rgba(255, 239, 222, 0.3) 54%, rgba(255, 231, 220, 0.1) 70%, transparent 84%);
     filter: blur(42px);
     transform: scale(1.18);
+    animation: glow-core 14s ease-in-out infinite;
 }
 
 .visual-glow--sun {
@@ -449,6 +450,25 @@ h6 {
     background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 249, 0.92) 18%, rgba(255, 250, 237, 0.56) 44%, rgba(255, 241, 228, 0.18) 66%, transparent 84%);
     filter: blur(28px);
     transform: scale(1.14);
+    animation: glow-sun 11s ease-in-out infinite;
+}
+
+/* Smooth, GPU-cheap drift (transform/opacity only) replaces the costly SVG filter animation */
+@keyframes glow-core {
+    0%, 100% { transform: scale(1.18) translate3d(0, 0, 0); opacity: 1; }
+    50% { transform: scale(1.24) translate3d(1.5%, -2%, 0); opacity: 0.85; }
+}
+
+@keyframes glow-sun {
+    0%, 100% { transform: scale(1.14) translate3d(0, 0, 0); opacity: 1; }
+    50% { transform: scale(1.05) translate3d(-1.5%, 2%, 0); opacity: 0.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .visual-glow--core,
+    .visual-glow--sun {
+        animation: none;
+    }
 }
 
 .visual-glow--bottom {
