@@ -623,13 +623,19 @@ h6 {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Blog Section — Roboto Mono */
+/* Blog Section — JetBrains Mono */
 .blog .section-title,
 .blog-date,
 .blog-title a,
 .blog-excerpt,
 .read-more {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.blog-title a {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.01em;
 }
 
 .blog.first-section {
