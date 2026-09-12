@@ -47,6 +47,103 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <div class="hero-visual" aria-hidden="true">
+                <div class="visual-lighting">
+                    <span class="visual-glow visual-glow--ambient"></span>
+                    <span class="visual-glow visual-glow--core"></span>
+                    <span class="visual-glow visual-glow--sun"></span>
+                    <span class="visual-glow visual-glow--bottom"></span>
+                </div>
+
+                <svg class="liquid-scene" viewBox="0 0 1100 850" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <path id="mainBubblePath" d="M -450 -120 H 1550 V 970 H -450 Z" />
+                        <clipPath id="mainBubbleClip"><use href="#mainBubblePath" /></clipPath>
+
+                        <filter id="mainLiquidFilter" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+                            <feTurbulence type="fractalNoise" baseFrequency=".008 .010" numOctaves="2" seed="92" result="noise">
+                                <animate attributeName="baseFrequency" dur="10s" repeatCount="indefinite" values=".008 .010; .010 .008; .007 .012; .008 .010" />
+                            </feTurbulence>
+                            <feGaussianBlur in="noise" stdDeviation="1.35" result="blurredNoise" />
+                            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="86" xChannelSelector="R" yChannelSelector="G">
+                                <animate attributeName="scale" dur="8s" repeatCount="indefinite" values="78; 94; 84; 90; 78" />
+                            </feDisplacementMap>
+                            <feColorMatrix type="matrix" values="1.02 0 0 0 0.010  0 1.01 0 0 0.008  0 0 .96 0 -0.002  0 0 0 1 0" />
+                        </filter>
+
+                        <radialGradient id="mainDistortionFade" gradientUnits="userSpaceOnUse" cx="590" cy="385" r="330">
+                            <stop offset="0%" stop-color="white" stop-opacity="1" />
+                            <stop offset="55%" stop-color="white" stop-opacity="1" />
+                            <stop offset="78%" stop-color="white" stop-opacity=".52" />
+                            <stop offset="100%" stop-color="black" stop-opacity="0" />
+                        </radialGradient>
+                        <mask id="mainDistortionMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="1100" height="850" fill="black" />
+                            <ellipse cx="590" cy="385" rx="335" ry="265" fill="url(#mainDistortionFade)" />
+                        </mask>
+
+                        <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                            <stop offset="16%" stop-color="#fffdf7" stop-opacity=".96" />
+                            <stop offset="28%" stop-color="#dff6ff" stop-opacity=".55" />
+                            <stop offset="44%" stop-color="#fff8fe" stop-opacity=".36" />
+                            <stop offset="60%" stop-color="#ffdff2" stop-opacity=".34" />
+                            <stop offset="76%" stop-color="#d8f6ff" stop-opacity=".36" />
+                            <stop offset="90%" stop-color="#fff7ef" stop-opacity=".70" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity=".96" />
+                        </linearGradient>
+
+                        <radialGradient id="mainInnerMilk" cx="48%" cy="16%" r="70%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity=".34" />
+                            <stop offset="18%" stop-color="#fffdf8" stop-opacity=".22" />
+                            <stop offset="40%" stop-color="#fff7ef" stop-opacity=".08" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </radialGradient>
+                        <radialGradient id="mainBottomPearl" cx="40%" cy="92%" r="48%">
+                            <stop offset="0%" stop-color="#ffdff1" stop-opacity=".14" />
+                            <stop offset="34%" stop-color="#e9dfff" stop-opacity=".08" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </radialGradient>
+                        <linearGradient id="mainIridescentSheen" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity=".20" />
+                            <stop offset="16%" stop-color="#dff6ff" stop-opacity=".16" />
+                            <stop offset="33%" stop-color="#ffffff" stop-opacity=".08" />
+                            <stop offset="58%" stop-color="#ffe1f4" stop-opacity=".07" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </linearGradient>
+                        <radialGradient id="specHot" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity=".95" />
+                            <stop offset="30%" stop-color="#ffffff" stop-opacity=".52" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </radialGradient>
+                        <radialGradient id="specSoft" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity=".55" />
+                            <stop offset="42%" stop-color="#ffffff" stop-opacity=".16" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+
+                    <!-- full-frame base image so the scene fills edge to edge -->
+                    <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="-120" y="-120" width="1340" height="1090" preserveAspectRatio="xMidYMid slice" />
+                    <rect x="0" y="0" width="1100" height="850" fill="#050505" opacity="0.32" />
+
+                    <g id="mainParallax">
+                        <g>
+                            <g clip-path="url(#mainBubbleClip)" filter="url(#mainLiquidFilter)">
+                                <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="-120" y="-120" width="1340" height="1090" preserveAspectRatio="xMidYMid slice" />
+                                <rect x="0" y="0" width="1100" height="850" fill="url(#mainInnerMilk)" />
+                                <rect x="0" y="0" width="1100" height="850" fill="url(#mainIridescentSheen)" />
+                                <rect x="0" y="0" width="1100" height="850" fill="url(#mainBottomPearl)" />
+                                <ellipse cx="406" cy="218" rx="48" ry="38" fill="url(#specHot)" transform="rotate(-18 406 218)" />
+                                <ellipse cx="438" cy="164" rx="18" ry="14" fill="url(#specSoft)" transform="rotate(-18 438 164)" />
+                                <ellipse cx="836" cy="286" rx="16" ry="13" fill="url(#specSoft)" />
+                                <ellipse cx="365" cy="678" rx="13" ry="11" fill="url(#specSoft)" />
+                            </g>
+                            <use href="#mainBubblePath" class="bubble-edge bubble-edge--main" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
             <img src="hands.png" alt="" class="hero-hands" aria-hidden="true">
             <div class="hero-buttons">
                 <a href="products.html" class="btn">View Work</a>

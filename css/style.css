@@ -316,7 +316,198 @@ h6 {
     position: relative;
 }
 
-/* Reaching-hands accent behind the hero text */
+/* Full-bleed hero image (index2) — whole image, edge to edge */
+.hero-full {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    max-width: none;
+    height: auto;
+    filter: grayscale(100%) contrast(1.08) brightness(0.92);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Scrim that blends the art into the page and lifts the text/buttons */
+.hero-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        radial-gradient(120% 80% at 50% 40%, transparent 35%, rgba(5, 5, 5, 0.55) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.75) 0%, rgba(5, 5, 5, 0) 22%,
+            rgba(5, 5, 5, 0) 55%, rgba(5, 5, 5, 0.85) 100%);
+}
+
+.hero-art-content {
+    position: absolute;
+    left: 50%;
+    bottom: 12vh;
+    bottom: 12dvh;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+.hero--art .subtitle {
+    display: block;
+    font-family: var(--font-secondary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.hero--art .title {
+    font-family: var(--font-primary);
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.8);
+}
+
+.hero--art .hero-buttons {
+    position: static;
+    transform: none;
+    left: auto;
+    bottom: auto;
+}
+
+.hero--art .btn {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(5, 5, 5, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+.hero--art .btn:hover {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--bg-color);
+}
+
+/* Liquid-glass bubble scene behind the hands */
+.hero-visual {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.visual-lighting {
+    position: absolute;
+    z-index: -10;
+    inset: -14% -16% -17% -15%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.visual-glow {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.visual-glow--ambient {
+    left: 17%;
+    top: -1%;
+    width: 78%;
+    height: 82%;
+    background: radial-gradient(ellipse at 58% 44%, rgba(255, 255, 247, 0.52) 0%, rgba(255, 249, 235, 0.34) 24%, rgba(255, 241, 221, 0.18) 44%, rgba(255, 232, 214, 0.08) 60%, transparent 80%);
+    filter: blur(70px);
+    transform: scale(1.13);
+}
+
+.visual-glow--core {
+    left: 33%;
+    top: 4%;
+    width: 54%;
+    height: 58%;
+    background: radial-gradient(ellipse at 51% 42%, rgba(255, 255, 250, 0.98) 0%, rgba(255, 255, 244, 0.88) 15%, rgba(255, 248, 232, 0.6) 34%, rgba(255, 239, 222, 0.3) 54%, rgba(255, 231, 220, 0.1) 70%, transparent 84%);
+    filter: blur(42px);
+    transform: scale(1.18);
+}
+
+.visual-glow--sun {
+    left: 45%;
+    top: 5%;
+    width: 31%;
+    height: 34%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 249, 0.92) 18%, rgba(255, 250, 237, 0.56) 44%, rgba(255, 241, 228, 0.18) 66%, transparent 84%);
+    filter: blur(28px);
+    transform: scale(1.14);
+}
+
+.visual-glow--bottom {
+    left: 38%;
+    top: 55%;
+    width: 47%;
+    height: 31%;
+    background: radial-gradient(ellipse at 52% 34%, rgba(255, 246, 236, 0.3) 0%, rgba(255, 237, 226, 0.16) 34%, rgba(255, 226, 215, 0.08) 58%, transparent 80%);
+    filter: blur(54px);
+    transform: scale(1.18);
+}
+
+.visual-glow--secondary {
+    left: 12%;
+    top: 50%;
+    width: 38%;
+    height: 40%;
+    background: radial-gradient(circle at center, rgba(255, 255, 248, 0.26), rgba(255, 240, 230, 0.12) 48%, transparent 76%);
+    filter: blur(38px);
+    transform: scale(1.08);
+}
+
+.visual-glow--drop {
+    left: 59%;
+    top: 70%;
+    width: 24%;
+    height: 23%;
+    background: radial-gradient(circle, rgba(255, 255, 248, 0.24), rgba(255, 241, 231, 0.1) 50%, transparent 76%);
+    filter: blur(32px);
+    transform: scale(1.16);
+}
+
+.liquid-scene {
+    position: relative;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.bubble-warm-overlay {
+    mix-blend-mode: soft-light;
+}
+
+.bubble-edge {
+    fill: rgba(255, 255, 255, 0.02);
+    stroke: url(#glassStroke);
+    stroke-width: 4;
+    vector-effect: non-scaling-stroke;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.98)) drop-shadow(0 0 7px rgba(236, 245, 255, 0.42)) drop-shadow(0 0 10px rgba(255, 224, 241, 0.28)) drop-shadow(0 14px 24px rgba(86, 70, 63, 0.08));
+}
+
+.bubble-edge--main {
+    stroke-width: 4.7;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 1)) drop-shadow(0 0 8px rgba(236, 245, 255, 0.48)) drop-shadow(0 0 13px rgba(255, 226, 242, 0.3)) drop-shadow(0 16px 30px rgba(86, 70, 63, 0.09));
+}
+
+/* Reaching-hands accent in front of the glass panel */
 .hero-hands {
     position: absolute;
     top: 50%;
@@ -324,11 +515,10 @@ h6 {
     transform: translate(-50%, -50%);
     width: 100vw;
     max-width: none;
-    filter: invert(1) grayscale(1) contrast(1.15) brightness(1.15);
-    mix-blend-mode: screen;
-    opacity: 0.45;
+    filter: grayscale(1) contrast(1.08);
+    opacity: 1;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero .subtitle {
@@ -373,6 +563,35 @@ h6 {
     padding: 0.9rem 1.6rem;
     font-size: 0.72rem;
     letter-spacing: 2px;
+}
+
+/* Keep the hero buttons legible over the glass panel (index only) */
+.hero:not(.hero--art) .hero-buttons::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 360%;
+    background: radial-gradient(ellipse at center, rgba(5, 5, 5, 0.72) 0%, rgba(5, 5, 5, 0.4) 45%, transparent 74%);
+    filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero:not(.hero--art) .hero-buttons .btn {
+    background: rgba(5, 5, 5, 0.42);
+    border-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+.hero:not(.hero--art) .hero-buttons .btn:hover {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--bg-color);
 }
 
 /* Products Section */
@@ -1047,11 +1266,6 @@ h6 {
         grid-template-columns: 1fr;
     }
 
-    .footer-container {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -1065,8 +1279,44 @@ h6 {
         font-size: 1.5rem;
     }
 
+    /* Compact footer on mobile */
+    .footer {
+        padding: 2rem 0 1.25rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-logo {
+        font-size: 1.25rem;
+        margin-bottom: 0;
+    }
+
     .footer-col {
         flex-direction: row;
-        gap: 3rem;
+        gap: 2.5rem;
+    }
+
+    .footer-links h4,
+    .footer-social h4 {
+        margin-bottom: 0.6rem;
+        font-size: 0.65rem;
+    }
+
+    .footer-links ul li,
+    .footer-social ul li {
+        margin-bottom: 0.3rem;
+    }
+
+    .footer-links a,
+    .footer-social a {
+        font-size: 0.95rem;
+    }
+
+    .footer-bottom {
+        margin-top: 1.25rem;
+        font-size: 0.6rem;
     }
 }
