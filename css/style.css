@@ -467,12 +467,7 @@ h6 {
     margin-left: 5px;
 }
 
-/* Projects/Products Section — Roboto Mono */
-.projects .project-info h3,
-.projects .project-info p {
-    font-family: 'Roboto Mono', monospace;
-}
-
+/* Projects/Products Section */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
