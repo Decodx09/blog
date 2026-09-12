@@ -467,7 +467,12 @@ h6 {
     margin-left: 5px;
 }
 
-/* Projects Section */
+/* Projects/Products Section — Roboto Mono */
+.projects .project-info h3,
+.projects .project-info p {
+    font-family: 'Roboto Mono', monospace;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -623,7 +628,15 @@ h6 {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Blog Section */
+/* Blog Section — Roboto Mono */
+.blog .section-title,
+.blog-date,
+.blog-title a,
+.blog-excerpt,
+.read-more {
+    font-family: 'Roboto Mono', monospace;
+}
+
 .blog.first-section {
     padding-top: calc(var(--header-height) + 3rem);
 }
@@ -909,6 +922,10 @@ h6 {
         touch-action: manipulation;
     }
 
+    .hero-buttons {
+        bottom: 22vh;
+    }
+
     .header {
         backdrop-filter: none;
         /* iOS Safari fix for fixed descendents */
@@ -986,6 +1003,14 @@ h6 {
 
     .product-card {
         padding: 2.5rem;
+    }
+
+    .projects .project-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .project-info p {
+        font-size: 0.9rem;
     }
 
     .contact-container {
