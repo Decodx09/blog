@@ -633,7 +633,7 @@ h6 {
 }
 
 .blog .section-title {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
 }
 
 .blog-grid {
@@ -695,15 +695,14 @@ h6 {
 /* Contact Section */
 .contact-container {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 8rem;
+    grid-template-columns: 1fr;
     align-items: stretch;
 }
 
 .contact-text {
     display: flex;
     flex-direction: column;
-    padding-right: 2rem;
+    padding-right: 0;
 }
 
 .contact-text p {
@@ -714,12 +713,23 @@ h6 {
     font-weight: 300;
 }
 
+.contact .section-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+
 .contact-actions {
-    margin-top: auto;
+    margin-top: 2.5rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 2rem;
+}
+
+.cal-inline {
+    width: 100%;
+    max-width: 900px;
+    min-height: 600px;
+    overflow: auto;
 }
 
 .contact-form-wrapper {
@@ -782,7 +792,7 @@ h6 {
 /* Footer */
 .footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 4rem 0 2rem;
+    padding: 3rem 0 1.5rem;
     background: #050505;
 }
 
@@ -810,13 +820,13 @@ h6 {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-size: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--text-secondary);
 }
 
 .footer-links ul li,
 .footer-social ul li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links a,
@@ -847,7 +857,7 @@ h6 {
 }
 
 .footer-bottom {
-    margin-top: 3rem;
+    margin-top: 2rem;
     text-align: center;
     font-family: var(--font-secondary);
     font-size: 0.7rem;
@@ -983,6 +993,10 @@ h6 {
         gap: 4rem;
     }
 
+    .contact-text {
+        padding-right: 0;
+    }
+
     .contact-actions {
         margin-top: 2rem;
     }
@@ -999,7 +1013,7 @@ h6 {
 
     .footer-container {
         flex-direction: column;
-        gap: 4rem;
+        gap: 2rem;
     }
 
     .projects-grid {
@@ -1011,8 +1025,12 @@ h6 {
         gap: 1rem;
     }
 
+    .blog-title a {
+        font-size: 1.5rem;
+    }
+
     .footer-col {
-        flex-direction: column;
+        flex-direction: row;
         gap: 3rem;
     }
 }

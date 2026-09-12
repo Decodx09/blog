@@ -52,30 +52,9 @@
                 <div class="contact-text">
                     <span class="section-subtitle">Get In Touch</span>
                     <h2 class="section-title">Let's Work Together</h2>
-                    <p style="margin-top: 2rem;">I'm always open to discussing complex engineering challenges and new
-                        opportunities.</p>
                     <div class="contact-actions">
-                        <a href="https://cal.com/shivansh-sukhija/30min" target="_blank" class="btn">Book a Call</a>
+                        <div id="cal-inline" class="cal-inline"></div>
                     </div>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="1" placeholder="Type your message here..."
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit">Send Message</button>
-                    </form>
                 </div>
             </div>
         </section>
@@ -110,6 +89,18 @@
             <p>&copy; 2026 Shivansh Sukhija. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- Cal.com inline embed -->
+    <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", "30min", { origin: "https://cal.com" });
+        Cal.ns["30min"]("inline", {
+            elementOrSelector: "#cal-inline",
+            config: { "layout": "month_view", "theme": "dark" },
+            calLink: "shivansh-sukhija/30min",
+        });
+        Cal.ns["30min"]("ui", { "theme": "dark", "hideEventTypeDetails": false, "layout": "month_view" });
+    </script>
 
     <script src="js/script.js"></script>
 </body>
