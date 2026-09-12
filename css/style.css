@@ -254,6 +254,21 @@ h6 {
     left: 0;
 }
 
+/* Active page link */
+.nav-link[aria-current="page"] {
+    color: #fff;
+}
+
+.nav-link[aria-current="page"]::after {
+    width: 100%;
+    left: 0;
+}
+
+/* First section on a standalone page needs to clear the fixed header */
+.section.first-section {
+    padding-top: calc(var(--header-height) + 8rem);
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -439,9 +454,8 @@ h6 {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 .project-info h3 {
@@ -475,18 +489,31 @@ h6 {
     transform: rotate(15deg);
 }
 
-/* Experience Section */
+/* Experience Section — compact one-pager */
+.experience.first-section {
+    padding-top: calc(var(--header-height) + 3rem);
+    padding-bottom: 5rem;
+}
+
+.experience .section-header {
+    margin-bottom: 3rem;
+}
+
+.experience .section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
 .exp-grid {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .exp-card {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 3rem;
-    padding: 3rem;
+    grid-template-columns: 190px 1fr;
+    gap: 2.5rem;
+    padding: 2.25rem 2.5rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
     transition: var(--transition);
@@ -494,13 +521,13 @@ h6 {
 
 .exp-card:hover {
     border-color: rgba(255, 255, 255, 0.12);
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
 
 .exp-period {
     font-family: var(--font-secondary);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     letter-spacing: 2px;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -508,32 +535,35 @@ h6 {
 }
 
 .exp-content h3 {
-    font-size: 2.2rem;
-    margin-bottom: 0.4rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.2rem;
 }
 
 .company {
     display: block;
     font-family: var(--font-primary);
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
 }
 
 .exp-highlights {
     list-style: none;
-    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem 2.5rem;
+    margin-bottom: 1.4rem;
 }
 
 .exp-highlights li {
     color: var(--text-secondary);
     font-family: var(--font-secondary);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.88rem;
+    line-height: 1.55;
     padding-left: 1.2rem;
     position: relative;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.35rem;
 }
 
 .exp-highlights li::before {
@@ -566,16 +596,35 @@ h6 {
 }
 
 /* Blog Section */
+.blog.first-section {
+    padding-top: calc(var(--header-height) + 3rem);
+}
+
+.blog .section-header {
+    margin-bottom: 3rem;
+}
+
+.blog .section-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+}
+
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: baseline;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3rem 0;
+    padding: 2rem 0;
     transition: var(--transition);
+}
+
+.blog-card:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .blog-card:hover {
@@ -587,7 +636,6 @@ h6 {
     font-size: 0.75rem;
     letter-spacing: 3px;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
     display: block;
     text-transform: uppercase;
 }
@@ -704,7 +752,7 @@ h6 {
 /* Footer */
 .footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 8rem 0 4rem;
+    padding: 4rem 0 2rem;
     background: #050505;
 }
 
@@ -715,10 +763,10 @@ h6 {
 }
 
 .footer-logo {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-family: var(--font-primary);
     font-style: italic;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .footer-col {
@@ -732,7 +780,7 @@ h6 {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-size: 0.75rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     color: var(--text-secondary);
 }
 
@@ -769,7 +817,7 @@ h6 {
 }
 
 .footer-bottom {
-    margin-top: 6rem;
+    margin-top: 3rem;
     text-align: center;
     font-family: var(--font-secondary);
     font-size: 0.7rem;
@@ -808,6 +856,10 @@ h6 {
 
     .section {
         padding: 6rem 0;
+    }
+
+    .section.first-section {
+        padding-top: calc(var(--header-height) + 4rem);
     }
 
     .hamburger {
@@ -884,6 +936,10 @@ h6 {
         transition-delay: 0.6s;
     }
 
+    .nav-list.active li:nth-child(6) .nav-link {
+        transition-delay: 0.7s;
+    }
+
     .products-grid {
         grid-template-columns: 1fr;
     }
@@ -903,6 +959,10 @@ h6 {
         padding: 2rem;
     }
 
+    .exp-highlights {
+        grid-template-columns: 1fr;
+    }
+
     .footer-container {
         flex-direction: column;
         gap: 4rem;
@@ -912,8 +972,9 @@ h6 {
         grid-template-columns: 1fr;
     }
 
-    .blog-grid {
+    .blog-card {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .footer-col {

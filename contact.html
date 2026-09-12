@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivansh Sukhija | DevOps Engineer</title>
+    <title>Contact | Shivansh Sukhija</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,11 +30,11 @@
         <div class="container header-container">
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link" aria-current="page">Home</a></li>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="products.html" class="nav-link">Products</a></li>
                     <li><a href="experience.html" class="nav-link">Experience</a></li>
                     <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="contact.html" class="nav-link" aria-current="page">Contact</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -46,18 +46,36 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <span class="subtitle">DevOps Engineer</span>
-                    <h1 class="title">Shivansh Sukhija</h1>
-                    <p class="description">Architecting robust cloud infrastructure and scalable systems. Transforming
-                        code into reliable production reality.</p>
-                    <div class="hero-buttons">
-                        <a href="products.html" class="btn">View Work</a>
-                        <a href="contact.html" class="btn">Get in Touch</a>
+        <!-- Contact Section -->
+        <section id="contact" class="contact section first-section">
+            <div class="container contact-container">
+                <div class="contact-text">
+                    <span class="section-subtitle">Get In Touch</span>
+                    <h2 class="section-title">Let's Work Together</h2>
+                    <p style="margin-top: 2rem;">I'm always open to discussing complex engineering challenges and new
+                        opportunities.</p>
+                    <div class="contact-actions">
+                        <a href="https://cal.com/shivansh-sukhija/30min" target="_blank" class="btn">Book a Call</a>
                     </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="1" placeholder="Type your message here..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Send Message</button>
+                    </form>
                 </div>
             </div>
         </section>
