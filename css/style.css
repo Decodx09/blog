@@ -9,7 +9,7 @@
     --font-secondary: 'Outfit', sans-serif;
 
     --container-width: 1200px;
-    --header-height: 100px;
+    --header-height: 68px;
     --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -160,6 +160,7 @@ h6 {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .btn:hover {
@@ -311,6 +312,22 @@ h6 {
 .hero-content {
     max-width: 900px;
     z-index: 10;
+    position: relative;
+}
+
+/* Reaching-hands accent behind the hero text */
+.hero-hands {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    max-width: none;
+    filter: invert(1) grayscale(1) contrast(1.15) brightness(1.15);
+    mix-blend-mode: screen;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero .subtitle {
@@ -341,9 +358,20 @@ h6 {
 }
 
 .hero-buttons {
+    position: absolute;
+    left: 50%;
+    bottom: 12vh;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.hero-buttons .btn {
+    padding: 0.9rem 1.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
 }
 
 /* Products Section */
@@ -669,10 +697,12 @@ h6 {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 8rem;
-    align-items: start;
+    align-items: stretch;
 }
 
 .contact-text {
+    display: flex;
+    flex-direction: column;
     padding-right: 2rem;
 }
 
@@ -685,7 +715,7 @@ h6 {
 }
 
 .contact-actions {
-    margin-top: 4rem;
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -951,6 +981,10 @@ h6 {
     .contact-container {
         grid-template-columns: 1fr;
         gap: 4rem;
+    }
+
+    .contact-actions {
+        margin-top: 2rem;
     }
 
     .exp-card {
