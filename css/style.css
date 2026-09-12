@@ -752,19 +752,6 @@ h6 {
     max-width: 900px;
     min-height: 600px;
     overflow: auto;
-    position: relative;
-}
-
-/* Mask the Cal.com branding strip at the bottom of the embed */
-.cal-inline::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 31px;
-    height: 60px;
-    background: var(--bg-color);
-    pointer-events: none;
 }
 
 .contact-form-wrapper {
