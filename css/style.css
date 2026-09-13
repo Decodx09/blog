@@ -868,19 +868,13 @@ h6 {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Blog Section — JetBrains Mono */
+/* Blog Section — Inter (fingerprint.com style) */
 .blog .section-title,
 .blog-date,
 .blog-title a,
 .blog-excerpt,
 .read-more {
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.blog-title a {
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-family: 'Inter', var(--font-secondary), sans-serif;
 }
 
 .blog.first-section {
@@ -892,7 +886,9 @@ h6 {
 }
 
 .blog .section-title {
-    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 .blog-grid {
@@ -902,11 +898,11 @@ h6 {
 
 .blog-card {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 3rem;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
     align-items: baseline;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem 0;
+    padding: 1.4rem 0;
     transition: var(--transition);
 }
 
@@ -919,36 +915,41 @@ h6 {
 }
 
 .blog-date {
-    font-family: var(--font-secondary);
-    font-size: 0.75rem;
-    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     color: var(--text-secondary);
     display: block;
     text-transform: uppercase;
 }
 
 .blog-title a {
-    font-size: 2rem;
-    font-style: italic;
-    line-height: 1.2;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -0.01em;
+    line-height: 1.45;
+    color: var(--text-primary);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    transition: color 0.25s ease;
+}
+
+.blog-title a:hover {
+    color: var(--text-secondary);
 }
 
 .blog-excerpt {
-    font-family: var(--font-secondary);
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
 .read-more {
-    font-family: var(--font-secondary);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
 }
 
 /* Contact Section */
@@ -1061,6 +1062,12 @@ h6 {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding: 3rem 0 1.5rem;
     background: #050505;
+}
+
+/* Footer spans the full page width (logo hard-left, links hard-right) */
+.footer .container {
+    max-width: none;
+    padding: 0 clamp(1.5rem, 4vw, 4rem);
 }
 
 .footer-container {
@@ -1299,11 +1306,11 @@ h6 {
 
     .blog-card {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.4rem;
     }
 
     .blog-title a {
-        font-size: 1.5rem;
+        font-size: 1.05rem;
     }
 
     /* Keep the same logo-left / links-right footer, just fitted to the width */
