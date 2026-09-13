@@ -1067,18 +1067,20 @@ h6 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .footer-logo {
     font-size: 1.6rem;
     font-family: var(--font-primary);
     font-style: italic;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .footer-col {
     display: flex;
-    gap: 6rem;
+    gap: 3.5rem;
 }
 
 .footer-links h4,
@@ -1304,46 +1306,32 @@ h6 {
         font-size: 1.5rem;
     }
 
-    /* Compact footer on mobile */
+    /* Keep the same logo-left / links-right footer, just fitted to the width */
     .footer {
-        padding: 2rem 0 1.25rem;
+        padding: 2.5rem 0 1.25rem;
     }
 
     .footer-container {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .footer-logo {
-        font-size: 1.25rem;
-        margin-bottom: 0;
+        font-size: 1.4rem;
     }
 
     .footer-col {
-        flex-direction: row;
-        gap: 1.75rem;
-    }
-
-    .footer-links h4,
-    .footer-social h4 {
-        margin-bottom: 0.6rem;
-        font-size: 0.65rem;
-    }
-
-    .footer-links ul li,
-    .footer-social ul li {
-        margin-bottom: 0.3rem;
+        gap: 2.5rem;
     }
 
     .footer-links a,
     .footer-social a {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .footer-bottom {
-        margin-top: 1.25rem;
-        font-size: 0.6rem;
+        margin-top: 1.5rem;
     }
 }
