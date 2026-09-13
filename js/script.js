@@ -26,28 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth Scroll (Lenis) — wrapped so a load failure doesn't break the page
-    try {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-    } catch (e) {
-        console.warn('Lenis smooth scroll unavailable:', e);
-    }
-
     // Custom Cursor (hidden on touch devices)
     const cursorDot = document.querySelector('[data-cursor-dot]');
     const cursorOutline = document.querySelector('[data-cursor-outline]');
@@ -99,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform;
         }
         .fade-in-section.visible {
             opacity: 1;
